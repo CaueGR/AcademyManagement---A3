@@ -1,0 +1,121 @@
+@startuml GerenciamentoAcademia
+
+abstract class Pessoa{
+- nome: String
+-dataNascimento: LocalDate
+- telefone: String
+- cpf: String
+- cep: String
+--
++ calcularIdade(): int
+}
+
+class Aluno extends Pessoa{
+- planoAcademia: PlanoAcademia
+- planoAlimentar : PlanoAlimentar
+- treino: Treino
+--
++acessarDadosPessoais()
++visualizarTreino()
++visualizarPlanoAlimentar()
++visualizarPlanoAcademia()
+}
+
+class Treinador extends Pessoa{
+- especializacao: String
+- disponibilidade: String
+}
+
+class Adm extends Pessoa{
+- numeroAcesso: int
+- senhaAdm: String
+}
+
+interface IAgendavel{
++ agendar()
++ cancelarAgendamento()
+}
+
+interface IGerenciamentoPlano{
++ criarPlano()
++ editarPlano()
++ excluirPlano()
+}
+
+class Agendamento implements IAgendavel{
+- aluno: Aluno
+- treinador: Treinador
+- data: Date
+- hora: String
+- local: String
+}
+
+class PlanoAcademia{
+- nome: String
+- preco: double
+- descricao: String
+--
++toString()
+}
+
+class Exercicio{
+- nome: String
+- grupoMuscular: String
+- repeticoes: int
+- series: int
+}
+
+class Treino{
+- listaExercicios: List<Exercicio>
+--
++adicionarExercicio()
++listarExercicios()
+}
+
+class Login{
+- email: String
+- senha: String
++ verificarEmail()
++ verificarSenha()
+}
+
+class Registro{
+- email: String
+- senha: String
++ confirmarSenha()
+}
+
+class PlanoAlimentar{
+- treinador: Treinador
+- listaRefeicoes: ArrayList<Refeicao>
+--
++ adicionarRefeicao()
++ removerRefeicao()
++ visualizarPlano()
+}
+
+class Refeicao{
+- nome: String
+- descricao: String
+- calorias: double
+--
++toString()
+}
+
+PlanoAlimentar <-- Refeicao : contém
+PlanoAlimentar --> Aluno : pertence a
+PlanoAlimentar --> Treinador : criado por
+
+'-- Relacionamentos
+
+Adm ..|> IGerenciamentoPlano
+Treinador ..|> IGerenciamentoPlano
+
+Aluno <-- PlanoAcademia : pertence
+Aluno <-- Treino : pertence
+Treino <-- Exercicio : contém
+Aluno --> Agendamento
+Treinador --> Agendamento
+Registro --> Login
+
+@enduml
