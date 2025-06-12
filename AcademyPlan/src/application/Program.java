@@ -41,6 +41,8 @@ public class Program {
          System.out.println(p.getTelefone());
          */
 		
+         // INFORMAÇÕES DO USUÁRIO (CLASSE PESSOA)
+         
 		System.out.println("nome: ");
 		String nome = sc.nextLine();
 		System.out.println("Grupo Muscular: ");
