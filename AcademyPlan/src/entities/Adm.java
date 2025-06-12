@@ -1,9 +1,22 @@
 package entities;
 
-public class Adm {
+import java.time.LocalDate;
 
-    private int numeroAcesso;
+public class Adm extends Pessoa{
+
+    private Integer numeroAcesso;
     private String senhaAdm;
+	
+    public Adm(String name, LocalDate dataNascimento, Integer telefone, Integer cpf, Integer cep, int numeroAcesso,
+			String senhaAdm) {
+		super(name, dataNascimento, telefone, cpf, cep);
+		this.numeroAcesso = numeroAcesso;
+		this.senhaAdm = senhaAdm;
+	}
+    
+    
+    
+    
 
 
 
