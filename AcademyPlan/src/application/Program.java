@@ -42,7 +42,7 @@ public class Program {
          */
 		
          // INFORMAÇÕES DO USUÁRIO (CLASSE PESSOA)
-         
+
 		System.out.println("nome: ");
 		String nome = sc.nextLine();
 		System.out.println("Grupo Muscular: ");
@@ -53,6 +53,9 @@ public class Program {
 		Integer s = sc.nextInt();
 		Treino t = new Treino();
 		Exercicio e = new Exercicio(nome, gM, r, s);
+
+
+        System.out.println("Digite a opção desejada:\n1- Opção1");
 		
 		t.adicionarExercicio(e);
 		
