@@ -1,10 +1,14 @@
 package modelos;
 
 import java.time.LocalDate;
+
+import Interfaces.Agendavel;
 import entities.Treinador;
+import entities.Aluno;
 
-public class Agendamento {
+public class Agendamento implements Agendavel {
 
+    private Aluno aluno;
     private Treinador treinador;
     private LocalDate data;
     private String hora;
@@ -16,6 +20,21 @@ public class Agendamento {
         this.hora = hora;
         this.local = local;
     }
+
+    
+
+    @Override
+    public void agendar() {
+        System.out.println("Agendamento criado para " + aluno.getName() + 
+                           " com o treinador " + treinador.getName() + 
+                           " no dia " + data + " às " + hora + " no local " + local + ".");
+    }
+
+    @Override
+    public void cancelarAgendamento() {
+        System.out.println("Agendamento cancelado para " + aluno.getName() + ".");
+    }
+
 
     public Treinador getTreinador() {
         return treinador;
