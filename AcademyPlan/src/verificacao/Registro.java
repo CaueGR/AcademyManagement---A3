@@ -6,6 +6,10 @@ public class Registro {
 	private ArrayList<String> emails = new ArrayList<>();
 	private ArrayList<String> senhas = new ArrayList<>();
 
+	public Registro() {
+		emails = new ArrayList<>();
+		senhas = new ArrayList<>();
+	}
 
 	    public ArrayList<String> getEmails() {
 	        return emails;
@@ -14,6 +18,7 @@ public class Registro {
 	    public ArrayList<String> getSenhas() {
 	        return senhas;
 	    }
+	    
 	    
 	    private boolean emailExiste(String email) {
 	        return emails.contains(email);
@@ -28,6 +33,13 @@ public class Registro {
 		            System.out.println("Email já cadastrado.");
 		        }
 		    }
+	    public void confirmarSenha(String senha, String confirmaSenha) {
+	    	if(confirmaSenha.equals(senha)) {
+
+	    	}else {
+	    		System.out.println("As senhas devem ser iguais.");
+	    	}
+	    }
 	}
 	
 	

@@ -1,43 +1,87 @@
 package application;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
-import modelos.Exercicio;
-import modelos.Treino;
+
+import entities.Aluno;
+import verificacao.Registro;
 
 public class Program {
 
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
+        
+        System.out.println("----------------------------------------");
+        System.out.println("Olá, bem vindo! Já possui o cadastro? (S/N)");
+        System.out.println("----------------------------------------");
+        char possuiCadastro = sc.next().charAt(0);
+        if(possuiCadastro == 'N' || possuiCadastro == 'n') {
+        System.out.println("Sem problemas! Vamos fazer o cadastro, defina seu melhor acesso: ");
+        System.out.println();
+        System.out.println("Você é aluno ou adiministrador? (a/d) ");
+        char alunoOUadm = sc.next().charAt(0);
+        if(alunoOUadm == 'a') {
+        	System.out.print("Nome: ");
+        	String nome = sc.nextLine();
+        	sc.next();
+
+            System.out.print("Data de nascimento (dd/MM/yyyy): ");
+            String dataString = sc.nextLine();
+            sc.next();
+            
+            System.out.print("Telefone: ");
+            Integer telefone = sc.nextInt();
+            
+            System.out.print("cpf: ");
+            Integer cpf = sc.nextInt();
+            
+            System.out.print("cep");
+            Integer cep = sc.nextInt();   
+            
+           // DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            //LocalDate dataNascimento = LocalDate.parse(dataString, formato);
+            
+          System.out.println("-------------------------------------");
+          System.out.println();
+          System.out.println("email: ");
+          String email = sc.next();
+          System.out.println("Senha: ");
+          String senha = sc.next();
+          System.out.println("Confrime a senha: ");
+          String confrimaSenha = sc.next();
+          System.out.println();
+          System.out.println("-------------------------------------");
+
+          Registro registro = new Registro();
+          registro.cadastrarUsuario(email, senha);
+          registro.confirmarSenha(confrimaSenha, senha);
+        }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 			
-		/* System.out.print("Nome: ");
-         String nome = sc.nextLine();
-
-         System.out.print("Data de nascimento (dd/MM/yyyy): ");
-         String dataTexto = sc.nextLine();
-
-         System.out.println("Telefone: ");
-         Integer telefone = sc.nextInt();
+		/* 
          
-         System.out.println("cpf: ");
-         Integer cpf = sc.nextInt();
-         System.out.println("cep");
-         Integer cep = sc.nextInt();
-         
-         // Conversão da String para LocalDate
-         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-         LocalDate dataNascimento = LocalDate.parse(dataTexto, formato);
-         
-         Pessoa p = new Pessoa(nome, dataNascimento, telefone, cpf, cep);
-         
-         System.out.println(p.getTelefone());
-         p.setTelefone(8888);
-         System.out.println(p.getTelefone());
-         System.out.println(p.getDataNascimento());
-         System.out.println(p.calcularIdade());         
-         System.out.println(p.getTelefone());
-         */
+   
 		
          // INFORMAÇÕES DO USUÁRIO (CLASSE PESSOA)
 
@@ -58,6 +102,7 @@ public class Program {
 		t.adicionarExercicio(e);
 		
 		t.listarExercicio();
+		      */
 		sc.close();
 
 	}

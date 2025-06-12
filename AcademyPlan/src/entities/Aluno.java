@@ -12,6 +12,9 @@ public class Aluno extends Pessoa {
     private PlanoAlimentar planoAlimentar;
     private Treino treino;
 
+    public Aluno(String name, LocalDate dataNascimento, Integer telefone, Integer cpf, Integer cep) {
+    	 super(name, dataNascimento, telefone, cpf, cep);
+    }
 
     public Aluno(String name, LocalDate dataNascimento, Integer telefone, Integer cpf, Integer cep,
             PlanoAcademia planoAcademia, PlanoAlimentar planoAlimentar, Treino treino) {
