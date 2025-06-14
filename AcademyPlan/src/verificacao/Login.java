@@ -2,7 +2,7 @@ package verificacao;
 
 import java.util.ArrayList;
 
-class Login {
+public class Login {
     private Registro registro;
 
     public Login(Registro registro) {

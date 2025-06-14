@@ -16,13 +16,13 @@ public class Aluno extends Pessoa {
     	 super(name, dataNascimento, telefone, cpf, cep);
     }
 
-    public Aluno(String name, LocalDate dataNascimento, Integer telefone, Integer cpf, Integer cep,
+    /*public Aluno(String name, LocalDate dataNascimento, Integer telefone, Integer cpf, Integer cep,
             PlanoAcademia planoAcademia, PlanoAlimentar planoAlimentar, Treino treino) {
         super(name, dataNascimento, telefone, cpf, cep);
         this.planoAcademia = planoAcademia;
         this.planoAlimentar = planoAlimentar;
         this.treino = treino;
-    }
+    }*/
 
 
    
