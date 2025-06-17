@@ -20,6 +20,7 @@ public class Program {
         System.out.println("Olá, bem vindo! Já possui o cadastro? (S/N)");
         System.out.println("----------------------------------------");
         char possuiCadastro = sc.next().charAt(0);
+        
         if(possuiCadastro == 'N' || possuiCadastro == 'n') {
         System.out.println("Sem problemas! Vamos fazer o cadastro, defina seu melhor acesso: ");
         System.out.println();
@@ -28,26 +29,30 @@ public class Program {
         //INTERFACE DO ALUNO
 
         char alunoOUadm = sc.next().charAt(0);
+        
         if(alunoOUadm == 'a') {
         	System.out.print("Nome: ");
+        	sc.nextLine();
         	String nome = sc.nextLine();
-        	sc.next();
+        	
+        	
+        	System.out.print("Data de nascimento (dd/MM/yyyy): ");
+        	String dataString = sc.nextLine();
 
-            System.out.print("Data de nascimento (dd/MM/yyyy): ");
-            String dataString = sc.nextLine();
-            sc.next();
-            
-            System.out.print("Telefone: ");
-            Integer telefone = sc.nextInt();
-            
-            System.out.print("cpf: ");
-            Integer cpf = sc.nextInt();
-            
-            System.out.print("cep: ");
-            Integer cep = sc.nextInt();
-            
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate dataNascimento = LocalDate.parse(dataString, formato);
+        	System.out.print("Telefone: ");
+        	Integer telefone = sc.nextInt();
+        	sc.nextLine(); // limpa o \n deixado pelo nextInt()
+
+        	System.out.print("CPF: ");
+        	Integer cpf = sc.nextInt();
+        	sc.nextLine(); // limpa o \n
+
+        	System.out.print("CEP: ");
+        	Integer cep = sc.nextInt();
+        	sc.nextLine(); // limpa o \n
+
+        	DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        	LocalDate dataNascimento = LocalDate.parse(dataString, formato);
 
             Aluno aluno = new Aluno(nome,dataNascimento, telefone, cpf, cep); 
             
@@ -71,6 +76,7 @@ public class Program {
           System.out.println("-------------------------------------");
 
           System.out.println("Email: ");
+          sc.nextLine();
           String emailAcesso = sc.nextLine();
           System.out.println("Senha: ");
           String senhaAcesso = sc.nextLine();
@@ -132,6 +138,7 @@ public class Program {
                  }else if(treinoCompleto == 'N' || treinoCompleto == 'n'){
                     System.out.println("Qual treino específico deseja?\n1- Costas\n2- Peito\n3- Membros Superiores\n4- Pernas\n5- Ombros\n6- Abdômen");
                     int opcaoTreino = sc.nextInt();
+                    
                     switch(opcaoTreino){
                         case 1: 
                         System.out.println("Puxada alta pegada aberta (barra ou frente) – Repetições: 4x8-10\r\n" + //
