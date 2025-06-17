@@ -23,6 +23,32 @@ public class Registro {
 	    private boolean emailExiste(String email) {
 	        return emails.contains(email);
 	    }
+
+		public void alterarEmail(String emailAtual, String novoEmail) {
+    int index = emails.indexOf(emailAtual);
+
+    if (index != -1) {
+        if (!emailAtual.equals(novoEmail) && emailExiste(novoEmail)) {
+            System.out.println("Novo e-mail já está em uso.");
+        } else {
+            emails.set(index, novoEmail);
+            System.out.println("E-mail atualizado com sucesso!");
+        }
+    } else {
+        System.out.println("E-mail atual não encontrado.");
+    }
+}
+
+public void alterarSenha(String email, String novaSenha) {
+    int index = emails.indexOf(email);
+	
+    if (index != -1) {
+        senhas.set(index, novaSenha);
+        System.out.println("Senha atualizada com sucesso!");
+    } else {
+        System.out.println("E-mail não encontrado.");
+    }
+}
 	    
 	    public void cadastrarUsuario(String email, String senha) {
 			if (!emailExiste(email)) {

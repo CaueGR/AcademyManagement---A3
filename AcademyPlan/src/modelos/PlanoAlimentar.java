@@ -18,11 +18,11 @@ public class PlanoAlimentar {
 		listaRefeicao.remove(codigo);
 		System.out.println("Refeicao excluida com sucesso: " + codigo);
 	}
-	public void listarExercicio() {
+	public void listarRefeicao() {
 		 if (listaRefeicao.isEmpty()) {
-	         System.out.println("Nenhum exercício no treino.");
+	         System.out.println("Nenhuma refeição.");
 	     } else {
-	         System.out.println("Lista de exercícios do treino:");
+	         System.out.println("Lista de refeições:");
 	         for (Refeicao rf : listaRefeicao) {
 	             System.out.println(" - " + rf);
 	         }

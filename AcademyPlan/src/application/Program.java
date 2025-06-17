@@ -8,6 +8,7 @@ import java.util.Scanner;
 import entities.Aluno;
 import verificacao.Registro;
 import verificacao.Login;
+import modelos.PlanoAlimentar;
 
 public class Program {
 
@@ -23,6 +24,9 @@ public class Program {
         System.out.println("Sem problemas! Vamos fazer o cadastro, defina seu melhor acesso: ");
         System.out.println();
         System.out.println("Você é aluno ou adiministrador? (a/d) ");
+
+        //INTERFACE DO ALUNO
+
         char alunoOUadm = sc.next().charAt(0);
         if(alunoOUadm == 'a') {
         	System.out.print("Nome: ");
@@ -39,7 +43,7 @@ public class Program {
             System.out.print("cpf: ");
             Integer cpf = sc.nextInt();
             
-            System.out.print("cep");
+            System.out.print("cep: ");
             Integer cep = sc.nextInt();
             
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -171,7 +175,33 @@ public class Program {
                         System.out.println("Opção inválida!");                                                                                                                                                     
                     }
                  }
+                 case 4:
+                    System.out.println("Seu plano atual é %s no valor de %d reais! "); break;
 
+                case 5:
+                 System.out.println(aluno.getName());
+                 System.out.println(aluno.getCep());
+                 System.out.println(registro.getEmails());
+                 System.out.println(registro.getSenhas());
+                 System.out.println(aluno.getCpf());
+                 System.out.println(aluno.getTelefone());
+                 System.out.println(aluno.getDataNascimento());
+
+                 System.out.println("Digite a opção desejada: (Para alterar os outros valores entre em contato com a sua unidade de cadastro)\n1- Alterar Email\n2- Alterar Senha\n3- Sair");
+                 int opcaoDadosPessoais = sc.nextInt();
+
+                 if(opcaoDadosPessoais == 1){
+                    System.out.println("Digite o novo email: ");
+                    registro.alterarEmail(emailAcesso, sc.nextLine());;
+
+                 }else if(opcaoDadosPessoais == 2){
+                    System.out.println("Digite a nova senha: ");
+                    registro.alterarSenha(emailAcesso, sc.nextLine());
+                 }
+
+                 case 6:
+                    PlanoAlimentar planoAlimentar = new PlanoAlimentar();
+                    planoAlimentar.listarRefeicao();
             
                 default:
                     break;
@@ -180,8 +210,12 @@ public class Program {
           }else{
             System.out.println("Credenciais de login inválidas, tente novamente!");
           }
+
         }
-        
+
+
+        //INTERFACE DO ADMINISTRADOR
+
         else if(alunoOUadm == 'd') {
             
         }
