@@ -8,6 +8,7 @@ import java.util.Scanner;
 import entities.Aluno;
 import verificacao.Registro;
 import verificacao.Login;
+import modelos.PlanoAcademia;
 import modelos.PlanoAlimentar;
 
 public class Program {
@@ -54,7 +55,7 @@ public class Program {
         	DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         	LocalDate dataNascimento = LocalDate.parse(dataString, formato);
 
-            Aluno aluno = new Aluno(nome,dataNascimento, telefone, cpf, cep); 
+           Aluno aluno = new Aluno(nome,dataNascimento, telefone, cpf, cep); 
             
           System.out.println("-------------------------------------");
           System.out.println();
@@ -86,16 +87,19 @@ public class Program {
           
           Login login = new Login(registro);
           if(login.autenticar(emailAcesso, senhaAcesso)){
-            System.out.printf("Bem vindo #s! O que deseja fazer?" , aluno.getName());
+            int opcaoPrincipal = 0;
+            while(opcaoPrincipal != 7){
 
-            System.out.println("1- Agendar consulta com treinador");
+            System.out.printf("Bem vindo %s! O que deseja fazer?" , aluno.getName());
+
+            System.out.println("\n1- Agendar consulta com treinador");
             System.out.println("2- Agendar treino");
             System.out.println("3- Visualizar plano de treino");
             System.out.println("4- Verificar Planos Academia");
             System.out.println("5- Acessar dados pessoais");
             System.out.println("6- Visualizar plano alimentar");
             System.out.println("7- Sair");
-            int opcaoPrincipal = sc.nextInt();
+            opcaoPrincipal = sc.nextInt();
 
             switch (opcaoPrincipal) {
                 case 1:
@@ -124,7 +128,7 @@ public class Program {
                 char treinoCompleto = sc.next().charAt(0);
                  if(treinoCompleto == 'S' || treinoCompleto == 's'){
                     System.out.println("Seu treino completo fica da seguinte maneira: ");
-                    System.out.println("        1. 3 x Voador -  Repetições: 15\r\n" + //
+                    System.out.println("1. 3 x Voador -  Repetições: 15\r\n" + //
                                                 "2. 4 x Supino-  Repetições: 12\r\n" + //
                                                 "3. 3 x Remada-  Repetições: 15\r\n" + //
                                                 "4. 4 x Puxada Fechada Supinada-  Repetições: 12\r\n" + //
@@ -183,16 +187,17 @@ public class Program {
                     }
                  }
                  case 4:
-                    System.out.println("Seu plano atual é %s no valor de %d reais! "); break;
+                 PlanoAcademia planoBasico = new PlanoAcademia("Basico", 100.00, "Para quem gosta de desafios mas mantém os pés no chão");
+                    System.out.printf("Seu plano atual é %s no valor de " + planoBasico.getPrice() + " reais! ",planoBasico.getName()); break;
 
                 case 5:
-                 System.out.println(aluno.getName());
-                 System.out.println(aluno.getCep());
-                 System.out.println(registro.getEmails());
-                 System.out.println(registro.getSenhas());
-                 System.out.println(aluno.getCpf());
-                 System.out.println(aluno.getTelefone());
-                 System.out.println(aluno.getDataNascimento());
+                 System.out.println("Nome: " + aluno.getName());
+                 System.out.println("CEP: " + aluno.getCep());
+                 System.out.println("Email:" + registro.getEmails());
+                 System.out.println("Senha: " + registro.getSenhas());
+                 System.out.println("CPF: " + aluno.getCpf());
+                 System.out.println("Telefone: " + aluno.getTelefone());
+                 System.out.println("Data de Nascimento: " + aluno.getDataNascimento());
 
                  System.out.println("Digite a opção desejada: (Para alterar os outros valores entre em contato com a sua unidade de cadastro)\n1- Alterar Email\n2- Alterar Senha\n3- Sair");
                  int opcaoDadosPessoais = sc.nextInt();
@@ -213,6 +218,8 @@ public class Program {
                 default:
                     break;
             }
+        }
+    
 
           }else{
             System.out.println("Credenciais de login inválidas, tente novamente!");
