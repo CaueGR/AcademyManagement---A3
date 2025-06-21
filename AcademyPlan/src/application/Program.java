@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import entities.Aluno;
+import entities.Adm;
 import verificacao.Registro;
 import verificacao.Login;
 import modelos.PlanoAcademia;
@@ -17,21 +18,29 @@ public class Program {
 		Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
         
+        System.out.println("Olá, seja bem vindo! Você é aluno ou adiministrador? (a/d) ");
+        char alunoOUadm = sc.next().charAt(0);
+
+
         System.out.println("----------------------------------------");
-        System.out.println("Olá, bem vindo! Já possui o cadastro? (S/N)");
+        System.out.println("Já possui o cadastro? (S/N)");
+        
         System.out.println("----------------------------------------");
         char possuiCadastro = sc.next().charAt(0);
         
         if(possuiCadastro == 'N' || possuiCadastro == 'n') {
         System.out.println("Sem problemas! Vamos fazer o cadastro, defina seu melhor acesso: ");
-        System.out.println();
-        System.out.println("Você é aluno ou adiministrador? (a/d) ");
+
+        }
+
+        /*else if(possuiCadastro == 'S' || possuiCadastro == 's') {
+            System.out.println("Certo! Vamos fazer login, qual seu acesso?");
+        }*/
+
 
         //INTERFACE DO ALUNO
-
-        char alunoOUadm = sc.next().charAt(0);
         
-        if(alunoOUadm == 'a') {
+        if(alunoOUadm == 'a' || possuiCadastro == 'N' || possuiCadastro == 'n') {
         	System.out.print("Nome: ");
         	sc.nextLine();
         	String nome = sc.nextLine();
@@ -41,11 +50,11 @@ public class Program {
         	String dataString = sc.nextLine();
 
         	System.out.print("Telefone: ");
-        	Integer telefone = sc.nextInt();
+        	Long telefone = sc.nextLong();
         	sc.nextLine(); // limpa o \n deixado pelo nextInt()
 
         	System.out.print("CPF: ");
-        	Integer cpf = sc.nextInt();
+        	Long cpf = sc.nextLong();
         	sc.nextLine(); // limpa o \n
 
         	System.out.print("CEP: ");
@@ -61,6 +70,7 @@ public class Program {
           System.out.println();
           System.out.println("email: ");
           String email = sc.next();
+          sc.nextLine(); // limpa o \n
           System.out.println("Senha: ");
           String senha = sc.next();
           System.out.println("Confrime a senha: ");
@@ -72,13 +82,23 @@ public class Program {
           registro.cadastrarUsuario(email, senha);
           registro.confirmarSenha(confirmaSenha, senha);
 
-          System.out.println("Cadastro concluído! Realize o login: ");
+          System.out.println("Cadastro concluído!, Realize o login: ");
+        }
+         Registro registro = new Registro();
+         Aluno aluno = new Aluno(null, null, null, null, null);
+
+          boolean valido = false;
+          while (!valido) {
+            
+          
           
           System.out.println("-------------------------------------");
+          sc.nextLine(); // limpa o \n
 
           System.out.println("Email: ");
-          sc.nextLine();
           String emailAcesso = sc.nextLine();
+
+          sc.nextLine(); // limpa o \n
           System.out.println("Senha: ");
           String senhaAcesso = sc.nextLine();
           
@@ -86,6 +106,7 @@ public class Program {
 
           
           Login login = new Login(registro);
+
           if(login.autenticar(emailAcesso, senhaAcesso)){
             int opcaoPrincipal = 0;
             while(opcaoPrincipal != 7){
@@ -100,6 +121,8 @@ public class Program {
             System.out.println("6- Visualizar plano alimentar");
             System.out.println("7- Sair");
             opcaoPrincipal = sc.nextInt();
+            sc.nextLine(); // limpa o \n
+
 
             switch (opcaoPrincipal) {
                 case 1:
@@ -107,10 +130,12 @@ public class Program {
                     String dataConsultaTreinador = sc.nextLine();
 
                     DateTimeFormatter formatoConsultaTreinador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                    LocalDate consultaTreinador = LocalDate.parse(dataConsultaTreinador, formato);
+                    LocalDate consultaTreinador = LocalDate.parse(dataConsultaTreinador, formatoConsultaTreinador);
 
                     System.out.println("Para qual horário gostaria de agendar? ");
                     String horarioConsulta = sc.nextLine();
+
+                    System.out.println("Agendamento concluído!");
                     break;
                 case 2:  
                     System.out.println("Para quando deseja agendar seu treino? (dd/MM/yyyy) ");
@@ -121,6 +146,8 @@ public class Program {
 
                     System.out.println("Para qual horário gostaria de agendar seu treino? ");
                     String horarioTreino = sc.nextLine();
+
+                    System.out.println("Agendamento concluído!");
                     break;
                 case 3:
                 System.out.println("Você ainda não possui treino!");
@@ -185,10 +212,11 @@ public class Program {
                         default:
                         System.out.println("Opção inválida!");                                                                                                                                                     
                     }
-                 }
+                 }break;
                  case 4:
                  PlanoAcademia planoBasico = new PlanoAcademia("Basico", 100.00, "Para quem gosta de desafios mas mantém os pés no chão");
-                    System.out.printf("Seu plano atual é %s no valor de " + planoBasico.getPrice() + " reais! ",planoBasico.getName()); break;
+                    System.out.printf("Seu plano atual é %s no valor de " + planoBasico.getPrice() + " reais! ",planoBasico.getName());
+                    System.out.println("/n"); break;
 
                 case 5:
                  System.out.println("Nome: " + aluno.getName());
@@ -201,6 +229,8 @@ public class Program {
 
                  System.out.println("Digite a opção desejada: (Para alterar os outros valores entre em contato com a sua unidade de cadastro)\n1- Alterar Email\n2- Alterar Senha\n3- Sair");
                  int opcaoDadosPessoais = sc.nextInt();
+                 sc.nextLine(); // limpa o \n
+
 
                  if(opcaoDadosPessoais == 1){
                     System.out.println("Digite o novo email: ");
@@ -209,52 +239,43 @@ public class Program {
                  }else if(opcaoDadosPessoais == 2){
                     System.out.println("Digite a nova senha: ");
                     registro.alterarSenha(emailAcesso, sc.nextLine());
-                 }
+                 }else{
+                    return;
+                 }break;
 
                  case 6:
                     PlanoAlimentar planoAlimentar = new PlanoAlimentar();
-                    planoAlimentar.listarRefeicao();
+                    planoAlimentar.listarRefeicao();break;
+
+                case 7:
+                    System.out.println("Obrigado volte sempre!");
+                    System.exit(0);break;
             
                 default:
+                 System.out.println("Digite uma opção válida");
                     break;
             }
         }
-    
+    }else {
+                System.out.println("Credenciais inválidas. Tente novamente.");
+            }
+        }
 
-          }else{
-            System.out.println("Credenciais de login inválidas, tente novamente!");
-          }
+        if (alunoOUadm == 'd') {
+            LocalDate dataNascimento = LocalDate.of(2005, 5, 16);
+            //Adm administrador = new Adm();
+            System.out.println("Administrador logado.");
+            System.out.println("O que vo");
 
         }
 
+        sc.close();
+    }
+}
 
-        //INTERFACE DO ADMINISTRADOR
 
-        else if(alunoOUadm == 'd') {
-            
-        }
 
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-			
-		/* 
+/* 
          
    
 		
@@ -278,8 +299,3 @@ public class Program {
 		
 		t.listarExercicio();
 		      */
-		sc.close();
-
-	}
-
-}

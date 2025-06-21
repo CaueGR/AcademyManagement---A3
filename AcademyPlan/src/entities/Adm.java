@@ -9,7 +9,11 @@ public class Adm extends Pessoa implements GerenciamentoPlano{
     private Integer numeroAcesso;
     private String senhaAdm;
 
-    public Adm(String name, LocalDate dataNascimento, Integer telefone, Integer cpf, Integer cep, int numeroAcesso,
+    
+
+    
+
+    public Adm(String name, LocalDate dataNascimento, Long telefone, Long cpf, Integer cep, Integer numeroAcesso,
             String senhaAdm) {
         super(name, dataNascimento, telefone, cpf, cep);
         this.numeroAcesso = numeroAcesso;
