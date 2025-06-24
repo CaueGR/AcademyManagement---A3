@@ -11,12 +11,14 @@ import verificacao.Registro;
 import verificacao.Login;
 import modelos.PlanoAcademia;
 import modelos.PlanoAlimentar;
+import entities.Treinador;
 
 public class Program {
-
-	public static void main(String[] args) {
+    	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
+        Registro registro = new Registro();
+        Aluno aluno;
         
         System.out.println("Olá, seja bem vindo! Você é aluno ou adiministrador? (a/d) ");
         char alunoOUadm = sc.next().charAt(0);
@@ -28,19 +30,23 @@ public class Program {
         System.out.println("----------------------------------------");
         char possuiCadastro = sc.next().charAt(0);
         
-        if(possuiCadastro == 'N' || possuiCadastro == 'n') {
-        System.out.println("Sem problemas! Vamos fazer o cadastro, defina seu melhor acesso: ");
-
-        }
-
-        /*else if(possuiCadastro == 'S' || possuiCadastro == 's') {
-            System.out.println("Certo! Vamos fazer login, qual seu acesso?");
-        }*/
-
-
-        //INTERFACE DO ALUNO
         
-        if(alunoOUadm == 'a' || possuiCadastro == 'N' || possuiCadastro == 'n') {
+
+        if(possuiCadastro == 'S' || possuiCadastro == 's') {
+            System.out.println("Certo! Vamos fazer login, qual seu acesso?");
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String dataString = "09/16/2006";
+        	LocalDate dataNascimento = LocalDate.parse(dataString, formato);
+            String name = "Aluno Teste";
+            int telefone = 51942137;
+            long longTelefone = telefone;
+            int cpf = 456806986;
+            long longCpf = cpf;
+            int cep = 36465;
+
+            aluno = new Aluno("AlunoTeste",dataNascimento, longTelefone, longCpf, cep); 
+
+        }else{
         	System.out.print("Nome: ");
         	sc.nextLine();
         	String nome = sc.nextLine();
@@ -63,8 +69,8 @@ public class Program {
 
         	DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         	LocalDate dataNascimento = LocalDate.parse(dataString, formato);
-
-           Aluno aluno = new Aluno(nome,dataNascimento, telefone, cpf, cep); 
+            
+             aluno = new Aluno(nome,dataNascimento, telefone, cpf, cep); 
             
           System.out.println("-------------------------------------");
           System.out.println();
@@ -78,19 +84,12 @@ public class Program {
           System.out.println();
           System.out.println("-------------------------------------");
 
-          Registro registro = new Registro();
           registro.cadastrarUsuario(email, senha);
           registro.confirmarSenha(confirmaSenha, senha);
-
-          System.out.println("Cadastro concluído!, Realize o login: ");
         }
-         Registro registro = new Registro();
-         Aluno aluno = new Aluno(null, null, null, null, null);
-
           boolean valido = false;
           while (!valido) {
             
-          
           
           System.out.println("-------------------------------------");
           sc.nextLine(); // limpa o \n
@@ -108,6 +107,7 @@ public class Program {
           Login login = new Login(registro);
 
           if(login.autenticar(emailAcesso, senhaAcesso)){
+            valido = true;
             int opcaoPrincipal = 0;
             while(opcaoPrincipal != 7){
 
@@ -262,10 +262,99 @@ public class Program {
         }
 
         if (alunoOUadm == 'd') {
-            LocalDate dataNascimento = LocalDate.of(2005, 5, 16);
-            //Adm administrador = new Adm();
+
+            System.out.print("Nome: ");
+        	sc.nextLine();
+        	String nome = sc.nextLine();
+        	
+        	
+        	System.out.print("Data de nascimento (dd/MM/yyyy): ");
+        	String dataString = sc.nextLine();
+
+        	System.out.print("Telefone: ");
+        	Long telefone = sc.nextLong();
+        	sc.nextLine(); // limpa o \n deixado pelo nextInt()
+
+        	System.out.print("CPF: ");
+        	Long cpf = sc.nextLong();
+        	sc.nextLine(); // limpa o \n
+
+        	System.out.print("CEP: ");
+        	Integer cep = sc.nextInt();
+        	sc.nextLine(); // limpa o \n
+
+        	DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        	LocalDate dataNascimento = LocalDate.parse(dataString, formato);
+
+            boolean validado = false;
+            while (!validado){
+                
+            System.out.println("Digite seu número de acesso: ");
+            int numeroAcesso = sc.nextInt();
+            sc.nextLine(); // limpa o \n
+
+            System.out.println("Digite sua senha de acesso: ");
+            String senhaAdm = sc.nextLine();
+            sc.nextLine(); // limpa o \n
+
+            Adm adm = new Adm(nome, dataNascimento, telefone, cpf, cep, numeroAcesso, senhaAdm);
+            
+            if(adm.autenticacao(numeroAcesso, senhaAdm)){
+                validado = true;
+            }
+
+            }
+            
             System.out.println("Administrador logado.");
-            System.out.println("O que vo");
+            System.out.println("Olá, seja bem vindo! O que você deseja fazer? ");
+            System.out.println("1- Cadastrar Treinador\n2- Visualizar Lista de Alunos\n3- Editar Planos\n4- Sair");
+            int opcaoPrincipal = sc.nextInt();
+
+            switch (opcaoPrincipal) {
+                case 1:
+                     System.out.print("Nome: ");
+        	sc.nextLine();
+        	String nomeTreinador = sc.nextLine();
+        	
+        	
+        	System.out.print("Data de nascimento (dd/MM/yyyy): ");
+        	String dataStringTreinador = sc.nextLine();
+
+        	System.out.print("Telefone: ");
+        	Long telefoneTreinador = sc.nextLong();
+        	sc.nextLine(); // limpa o \n deixado pelo nextInt()
+
+        	System.out.print("CPF: ");
+        	Long cpfTreinador = sc.nextLong();
+        	sc.nextLine(); // limpa o \n
+
+        	System.out.print("CEP: ");
+        	Integer cepTreinador = sc.nextInt();
+        	sc.nextLine(); // limpa o \n
+
+            System.out.println("Qual a especialização? ");
+            String especializacao = sc.nextLine();
+            sc.nextLine(); // limpa o \n
+
+            System.out.println("Qual a disponibilidade? ");
+            String disponibilidade = sc.nextLine();
+            sc.nextLine(); // limpa o \n
+        	DateTimeFormatter formatoTreinador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        	LocalDate dataNascimentoTreinador = LocalDate.parse(dataString, formato);
+
+            Treinador treinador = new Treinador(nomeTreinador, dataNascimentoTreinador, telefoneTreinador, cpfTreinador, cepTreinador, especializacao, disponibilidade);
+                    break;
+            
+                    case 2: 
+                    System.out.println(aluno);
+                    
+                    break;
+
+                    case 3:
+
+                default:
+                    break;
+            }
 
         }
 
