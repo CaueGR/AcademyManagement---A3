@@ -8,7 +8,6 @@ import java.util.Scanner;
 import entities.Aluno;
 import verificacao.Registro;
 import verificacao.Login;
-import modelos.PlanoAlimentar;
 
 public class Program {
 
@@ -16,45 +15,44 @@ public class Program {
 		Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
         
-        System.out.println("----------------------------------------");
+        System.out.println("---------------------------------------------");
         System.out.println("Olá, bem vindo! Já possui o cadastro? (S/N)");
-        System.out.println("----------------------------------------");
+        System.out.println("---------------------------------------------");
         char possuiCadastro = sc.next().charAt(0);
         
         if(possuiCadastro == 'N' || possuiCadastro == 'n') {
+        	
         System.out.println("Sem problemas! Vamos fazer o cadastro, defina seu melhor acesso: ");
         System.out.println();
-        System.out.println("Você é aluno ou adiministrador? (a/d) ");
+             
+        System.out.print("Nome: ");
+        sc.nextLine();
+        String nome = sc.nextLine();
+        	
+        System.out.print("Data de nascimento (dd/MM/yyyy): ");
+        String dataString = sc.nextLine();
 
-        //INTERFACE DO ALUNO
+        System.out.print("Telefone: ");
+        Integer telefone = sc.nextInt();
+        sc.nextLine(); 
 
-        char alunoOUadm = sc.next().charAt(0);
+        System.out.print("CPF: ");
+        Integer cpf = sc.nextInt();
+        sc.nextLine(); 
+
+        System.out.print("CEP: ");
+        Integer cep = sc.nextInt();
+        sc.nextLine(); 
+
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate dataNascimento = LocalDate.parse(dataString, formato);
+
+        Aluno aluno = new Aluno(nome,dataNascimento, telefone, cpf, cep); 
+       
+   			
+     
+        }
         
-        if(alunoOUadm == 'a') {
-        	System.out.print("Nome: ");
-        	sc.nextLine();
-        	String nome = sc.nextLine();
-        	
-        	
-        	System.out.print("Data de nascimento (dd/MM/yyyy): ");
-        	String dataString = sc.nextLine();
-
-        	System.out.print("Telefone: ");
-        	Integer telefone = sc.nextInt();
-        	sc.nextLine(); // limpa o \n deixado pelo nextInt()
-
-        	System.out.print("CPF: ");
-        	Integer cpf = sc.nextInt();
-        	sc.nextLine(); // limpa o \n
-
-        	System.out.print("CEP: ");
-        	Integer cep = sc.nextInt();
-        	sc.nextLine(); // limpa o \n
-
-        	DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        	LocalDate dataNascimento = LocalDate.parse(dataString, formato);
-
-            Aluno aluno = new Aluno(nome,dataNascimento, telefone, cpf, cep); 
             
           System.out.println("-------------------------------------");
           System.out.println();
@@ -81,12 +79,12 @@ public class Program {
           System.out.println("Senha: ");
           String senhaAcesso = sc.nextLine();
           
-          System.out.println("-------------------------------------");
+       /*   System.out.println("-------------------------------------");
 
           
           Login login = new Login(registro);
           if(login.autenticar(emailAcesso, senhaAcesso)){
-            System.out.printf("Bem vindo #s! O que deseja fazer?" , aluno.getName());
+            System.out.printf("Bem vindo! %s O que deseja fazer?",  aluno.ge);
 
             System.out.println("1- Agendar consulta com treinador");
             System.out.println("2- Agendar treino");
@@ -100,6 +98,7 @@ public class Program {
             switch (opcaoPrincipal) {
                 case 1:
                     System.out.println("Para quando deseja agendar sua consultada com o treinador?(dd/MM/yyyy) ");
+                    sc.nextLine();
                     String dataConsultaTreinador = sc.nextLine();
 
                     DateTimeFormatter formatoConsultaTreinador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -182,33 +181,7 @@ public class Program {
                         System.out.println("Opção inválida!");                                                                                                                                                     
                     }
                  }
-                 case 4:
-                    System.out.println("Seu plano atual é %s no valor de %d reais! "); break;
 
-                case 5:
-                 System.out.println(aluno.getName());
-                 System.out.println(aluno.getCep());
-                 System.out.println(registro.getEmails());
-                 System.out.println(registro.getSenhas());
-                 System.out.println(aluno.getCpf());
-                 System.out.println(aluno.getTelefone());
-                 System.out.println(aluno.getDataNascimento());
-
-                 System.out.println("Digite a opção desejada: (Para alterar os outros valores entre em contato com a sua unidade de cadastro)\n1- Alterar Email\n2- Alterar Senha\n3- Sair");
-                 int opcaoDadosPessoais = sc.nextInt();
-
-                 if(opcaoDadosPessoais == 1){
-                    System.out.println("Digite o novo email: ");
-                    registro.alterarEmail(emailAcesso, sc.nextLine());;
-
-                 }else if(opcaoDadosPessoais == 2){
-                    System.out.println("Digite a nova senha: ");
-                    registro.alterarSenha(emailAcesso, sc.nextLine());
-                 }
-
-                 case 6:
-                    PlanoAlimentar planoAlimentar = new PlanoAlimentar();
-                    planoAlimentar.listarRefeicao();
             
                 default:
                     break;
@@ -217,24 +190,18 @@ public class Program {
           }else{
             System.out.println("Credenciais de login inválidas, tente novamente!");
           }
-
-        }
-
-
-        //INTERFACE DO ADMINISTRADOR
-
+        
+        
         else if(alunoOUadm == 'd') {
             
         }
-
-        }
+      
         
         
         
         
         
-        
-        
+        */
         
         
         
@@ -274,5 +241,5 @@ public class Program {
 		sc.close();
 
 	}
-
 }
+
