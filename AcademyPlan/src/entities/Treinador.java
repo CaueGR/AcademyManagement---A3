@@ -3,6 +3,7 @@ package entities;
 import java.time.LocalDate;
 
 import Interfaces.GerenciamentoPlano;
+import modelos.PlanoAcademia;
 
 public class Treinador extends Pessoa implements GerenciamentoPlano {
 

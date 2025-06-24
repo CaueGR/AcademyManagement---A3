@@ -301,7 +301,7 @@ public class Program {
 				\n📦 Plano Selecionado:
 				-----------------------------------
 				""");
-		System.out.println(plano); // certifique-se que o toString() do plano está bem feito
+		System.out.println(plano);
 		System.out.println("-----------------------------------");
 	}
 }
