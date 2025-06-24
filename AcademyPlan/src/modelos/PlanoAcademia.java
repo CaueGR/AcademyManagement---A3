@@ -37,7 +37,7 @@ public class PlanoAcademia {
 
 	@Override
 	public String toString() {
-		return "PlanoAcad [name=" + name + ", price=" + price + ", descricao=" + descricao + "]";
+		return "Plano: " + name + "\n" +" Valor Mensal: " + price + "\n" +" Descricao: " + descricao;
 	}
 	
 	

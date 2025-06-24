@@ -3,6 +3,7 @@ package entities;
 import java.time.LocalDate;
 
 import Interfaces.GerenciamentoPlano;
+import modelos.PlanoAcademia;
 
 public class Adm extends Pessoa implements GerenciamentoPlano{
 
@@ -27,11 +28,14 @@ public class Adm extends Pessoa implements GerenciamentoPlano{
         this.senhaAdm = senhaAdm;
     }
 
+    
+
     @Override
     public void criarPlanoAcademia() {
-        // TODO Auto-generated method stub
-
+        
+    
     }
+
 
     @Override
     public void criarPlanoAlimentar() {
