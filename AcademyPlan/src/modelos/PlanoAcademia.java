@@ -5,13 +5,21 @@ public class PlanoAcademia {
 	private Double price;
 	private String descricao;
 	
+	public PlanoAcademia() {
+		
+	}
+
+
 	public PlanoAcademia(String name, Double price, String descricao) {
+		super();
 		this.name = name;
 		this.price = price;
 		this.descricao = descricao;
 	}
 
-	public String getName() {
+
+
+public String getName() {
 		return name;
 	}
 
@@ -35,10 +43,12 @@ public class PlanoAcademia {
 		this.descricao = descricao;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "PlanoAcad [name=" + name + ", price=" + price + ", descricao=" + descricao + "]";
+	    return String.format("📝 Nome: %s\n💰 Preço: R$ %.2f\n📄 Descrição: %s", name, price, descricao);
 	}
+
 	
 	
 	

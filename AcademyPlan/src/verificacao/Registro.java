@@ -1,17 +1,26 @@
 package verificacao;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Registro {
+	
 	private ArrayList<String> emails = new ArrayList<>();
 	private ArrayList<String> senhas = new ArrayList<>();
 
+	
 	public Registro() {
 		emails = new ArrayList<>();
 		senhas = new ArrayList<>();
 	}
+	
+	public void notNull() {
+		this.emails.add("cauegr12@gmail.com");
+		this.senhas.add("caue25120412");
+	}
+	
 
-	    public ArrayList<String> getEmails() {
+	 public ArrayList<String> getEmails() {
 	        return emails;
 	    }
 
@@ -54,9 +63,12 @@ public void alterarSenha(String email, String novaSenha) {
 			if (!emailExiste(email)) {
 		            emails.add(email);
 		            senhas.add(senha);
+		            System.out.println("==================================================");
 		            System.out.println("Usuário cadastrado com sucesso!");
-		        } else {
+		        } else if(emailExiste(email)){
 		            System.out.println("Email já cadastrado.");
+		            System.out.println("Encerrando o programa.");
+		            
 		        }
 		    }
 	    public void confirmarSenha(String senha, String confirmaSenha) {
@@ -65,6 +77,12 @@ public void alterarSenha(String email, String novaSenha) {
 	    	}else {
 	    		System.out.println("As senhas devem ser iguais.");
 	    	}
+	    	
+	    }
+	    public void cadastrandoUsuario() {
+	    	 Scanner sc = new Scanner(System.in);
+	    	 
+	    	 sc.close();
 	    }
 	}
 	

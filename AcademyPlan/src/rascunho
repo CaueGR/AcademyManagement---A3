@@ -1,0 +1,39 @@
+/*else if (treinoCompleto == 'N' || treinoCompleto == 'n') {
+		 * System.out.println(
+		 * "Qual treino específico deseja?\n1- Costas\n2- Peito\n3- Membros Superiores\n4- Pernas\n5- Ombros\n6- Abdômen"
+		 * ); int opcaoTreino = sc.nextInt();
+		 * 
+		 * switch (opcaoTreino) { case 1: System.out.println(
+		 * "Puxada alta pegada aberta (barra ou frente) – Repetições: 4x8-10\r\n" + //
+		 * "Remada curvada com barra (ou cavalinho) – Repetições: 4x8-10\r\n" + //
+		 * "Remada baixa na máquina ou triângulo – Repetições: 3x10-12\r\n" + // "");
+		 * break; case 2:
+		 * System.out.println("Supino reto com barra – Repetições: 4x8-10\r\n" + //
+		 * "Supino inclinado com halteres – Repetições: 4x8-10\r\n" + //
+		 * "Crucifixo máquina ou voador – Repetições:  3x10-12\r\n" + // ""); break;
+		 * case 3: System.out.println("Rosca direta barra EZ – Repetições: 4x8-10\r\n" +
+		 * // "Rosca alternada com halteres (em pé) –  Repetições:3x10-12\r\n" + //
+		 * "Rosca martelo (ou na corda) – Repetições: 3x10-12\r\n" + //
+		 * "Mergulho entre bancos (ou paralelas assistidas) –  Repetições:3x10-12\r\n" +
+		 * // "Tríceps testa com barra EZ – Repetições: 3x8-10\r\n" + //
+		 * "Tríceps na corda –  Repetições:3x12-15 (foco em contração)\r\n" + // "");
+		 * break; case 4: System.out.println(
+		 * "Agachamento livre (ou guiado se necessário) – Repetições: 4x8-10\r\n" + //
+		 * "Leg press 45° – Repetições: 4x10-12\r\n" + //
+		 * "Cadeira extensora – Repetições: 3x12-15 (isometria no topo)\r\n" + //
+		 * "Stiff com halteres – Repetições: 4x10-12 (foco no posterior)\r\n" + //
+		 * "Mesa flexora – Repetições: 3x10-12\r\n" + //
+		 * "Panturrilha sentado ou em pé – Repetições: 4x15-20\r\n" + // ""); break;
+		 * case 5: System.out.
+		 * println("Desenvolvimento com halteres ou máquina – Repetições: 4x8-10\r\n" +
+		 * // "Elevação lateral com halteres – Repetições: 4x12-15\r\n" + //
+		 * "Elevação frontal com barra ou anilha – Repetições: 3x12\r\n" + // "");
+		 * break; case 6:
+		 * System.out.println("Prancha abdominal – Repetições: 3x 30 a 60 segundos\r\n"
+		 * + // "Abdominal na máquina ou crunch no solo – Repetições: 3x15-20\r\n" + //
+		 * "Abdominal remador – Repetições: 3x15\r\n" + //
+		 * "Prancha lateral (cada lado) – Repetições: 3x30 seg\r\n" + //
+		 * "Abdominal com polia alta (cabo/corda) – Repetições: 3x15\r\n" + // "");
+		 * break; default: System.out.println("Opção inválida!"); } } break; } }
+		 * 
+		 * /

@@ -9,11 +9,11 @@ public class Pessoa {
 	
 	private String name;
 	private LocalDate dataNascimento;
-	private Integer telefone;
-	private Integer cpf;
+	private Long telefone;
+	private Long cpf;
 	private Integer cep;
 	
-	public Pessoa(String name, LocalDate dataNascimento, Integer telefone, Integer cpf, Integer cep) {
+	public Pessoa(String name, LocalDate dataNascimento, Long telefone, Long cpf, Integer cep) {
 		this.name = name;
 		this.dataNascimento = dataNascimento;
 		this.telefone = telefone;
@@ -37,19 +37,19 @@ public class Pessoa {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Integer getTelefone() {
+	public Long getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Integer telefone) {
+	public void setTelefone(Long telefone) {
 		this.telefone = telefone;
 	}
 
-	public Integer getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 

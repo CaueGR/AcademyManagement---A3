@@ -6,10 +6,21 @@ import Interfaces.GerenciamentoPlano;
 
 public class Adm extends Pessoa implements GerenciamentoPlano{
 
-    private Integer numeroAcesso;
-    private String senhaAdm;
+    private Integer numeroAcesso; // insira o número de acesso aqui
+    private String senhaAdm; // insira sua senha de acesso aqui
 
-    public Adm(String name, LocalDate dataNascimento, Integer telefone, Integer cpf, Integer cep, int numeroAcesso,
+    
+    public boolean autenticacao(int numeroAcesso, String senhaAdm){
+        if(numeroAcesso == this.numeroAcesso && senhaAdm.equals(this.senhaAdm)){
+            return true;
+        }else{
+            System.out.println("Número de acesso ou senha inválidos");
+            return false;
+        }
+    }
+    
+
+    public Adm(String name, LocalDate dataNascimento, Long telefone, Long cpf, Integer cep, Integer numeroAcesso,
             String senhaAdm) {
         super(name, dataNascimento, telefone, cpf, cep);
         this.numeroAcesso = numeroAcesso;

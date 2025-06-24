@@ -10,7 +10,7 @@ public class Treinador extends Pessoa implements GerenciamentoPlano {
     private String disponibilidade;
 
 
-    public Treinador(String name, LocalDate dataNascimento, Integer telefone, Integer cpf, Integer cep,
+    public Treinador(String name, LocalDate dataNascimento, Long telefone, Long cpf, Integer cep,
             String especializacao, String disponibilidade) {
         super(name, dataNascimento, telefone, cpf, cep);
         this.especializacao = especializacao;
