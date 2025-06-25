@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import entities.Aluno;
 import modelos.PlanoAcademia;
+import modelos.PlanoAlimentar;
 import verificacao.Login;
 import verificacao.Registro;
 
@@ -23,6 +24,7 @@ public class Program {
 		Aluno aluno = null;
 		PlanoAcademia planoAcad = new PlanoAcademia();
 		String email = null;
+		int sair = 7;
 
 		linha();
 		System.out.println("            BEM-VINDO AO SISTEMA            ");
@@ -229,35 +231,28 @@ public class Program {
 				        break;
 				}
 			}
+			else if(escolha == 6) {
+				PlanoAlimentar planoAlimentar = new PlanoAlimentar();
+				 planoAlimentar.listarRefeicao();
+			}
+		//	else if(escolha == 7) 
+				//caso queira voltar para o login
+
+			else if(escolha == sair) { 
+				linha();
+				System.out.println(" =-= Obrigado volte sempre! =-= ");
+				linha();
+			}
+			else if(escolha > sair || escolha < 1) {
+				System.out.println("Digite uma opção válida");
+			}
 		} 
 		/*
 		 * 
 		 * 
-		 * /* /* case 5: System.out.println("Nome: " + aluno.getName());
-		 * System.out.println("CEP: " + aluno.getCep()); System.out.println("Email:" +
-		 * registro.getEmails()); System.out.println("Senha: " + registro.getSenhas());
-		 * System.out.println("CPF: " + aluno.getCpf()); System.out.println("Telefone: "
-		 * + aluno.getTelefone()); System.out.println("Data de Nascimento: " +
-		 * aluno.getDataNascimento());
+	
 		 * 
-		 * System.out.println(
-		 * "Digite a opção desejada: (Para alterar os outros valores entre em contato com a sua unidade de cadastro)\n1- Alterar Email\n2- Alterar Senha\n3- Sair"
-		 * ); int opcaoDadosPessoais = sc.nextInt(); sc.nextLine(); // limpa o \n
 		 * 
-		 * if (opcaoDadosPessoais == 1) { System.out.println("Digite o novo email: ");
-		 * registro.alterarEmail(emailAcesso, sc.nextLine()); ;
-		 * 
-		 * } else if (opcaoDadosPessoais == 2) {
-		 * System.out.println("Digite a nova senha: ");
-		 * registro.alterarSenha(emailAcesso, sc.nextLine()); } break;
-		 * 
-		 * case 6: PlanoAlimentar planoAlimentar = new PlanoAlimentar();
-		 * planoAlimentar.listarRefeicao(); break;
-		 * 
-		 * case 7: System.out.println("Obrigado volte sempre!"); System.exit(0); break;
-		 * 
-		 * default: System.out.println("Digite uma opção válida"); break; } } } else {
-		 * System.out.println("Credenciais inválidas. Tente novamente."); } }
 		 * 
 		 * if (alunoOUadm == 'd') {
 		 * 
