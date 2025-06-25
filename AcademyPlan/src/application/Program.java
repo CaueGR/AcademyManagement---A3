@@ -8,9 +8,13 @@ import java.util.Scanner;
 import entities.Adm;
 import entities.Aluno;
 import entities.Treinador;
+import modelos.Exercicio;
 import modelos.PlanoAcademia;
+import modelos.PlanoAlimentar;
+import modelos.Refeicao;
 import verificacao.Login;
 import verificacao.Registro;
+import modelos.Treino;
 
 public class Program {
 
@@ -21,9 +25,13 @@ public class Program {
 
 		Registro registro = new Registro();
 		registro.notNull();
+        Treino treino = new Treino();
 		Login login = new Login(registro);
 		Aluno aluno = null;
+        PlanoAlimentar planoAlimentar = new PlanoAlimentar();
 		PlanoAcademia planoAcad = new PlanoAcademia();
+        int sair = 7;
+		String email = null;
 
 		linha();
 		System.out.println("            BEM-VINDO AO SISTEMA            ");
@@ -34,25 +42,129 @@ public class Program {
 
 		
 		if(entidade == 'n') {
-            System.out.print("Treinador/Adm? "); 
+            System.out.print("Treinador/Adm?(T/A) "); 
             char trA = sc.next().charAt(0);
             
             if(trA == 't'){
                 Treinador treinador = new Treinador(null, null, null, null, null, null, null);
                 linha();
                 System.out.println(" Realize seu login ");
+
                 System.out.println("Email: ");
                 String emailTreinador = sc.nextLine();
+                sc.nextLine();
+
                 System.out.println("Senha: ");
                 String senhaTreinador = sc.nextLine();
                 sc.nextLine();
-                linha();
 
-                treinador.exibeMenu();
-                int opcaoTreinador = sc.nextInt();
+                linha();
+                int opcaoTreinador = 0;
+                while(opcaoTreinador != 5){
+                    treinador.exibeMenu();
+                    opcaoTreinador = sc.nextInt();
+
+                    if(opcaoTreinador == 1){
+
+                        linha();
+                        System.out.println("Quantos exercícios serão atribuídos? ");
+                        int numeroExercicios = sc.nextInt();
+                        sc.nextLine();
+
+                        linha();
+
+                        for(int i = 0; i < numeroExercicios; i++){
+                        System.out.println("Digite o nome do exercício: ");
+                        String nomeExercicio = sc.nextLine();
+                        sc.nextLine();
+
+                        System.out.println("Digite qual o grupo muscular: ");
+                        String grupoMuscular = sc.nextLine();
+                        sc.nextLine();
+
+                        System.out.println("Digite o número de séries: ");
+                        int series = sc.nextInt();
+                        sc.nextLine();
+
+                        System.out.println("Digite o número de repetições: ");
+                        int repeticoes = sc.nextInt();
+                        sc.nextLine();
+
+                        Exercicio exercicio = new Exercicio(nomeExercicio, grupoMuscular, repeticoes, series);
+                        treino.adicionarExercicio(exercicio);
+
+                        }
+                        System.out.println("✅ Treino adicionado com sucesso!");
+                        linha();
+                    }
+                    else if(opcaoTreinador == 2){
+                        linha();
+                        System.out.println("Quantas refeições serão atribuídas? ");
+                        int numeroRefeições = sc.nextInt();
+                        sc.nextLine();
+                        linha();
+
+                        for(int i = 0; i < numeroRefeições; i++){
+                            System.out.println("Digite a refeição: ");
+                            String nomeRefeicao = sc.nextLine();
+                            sc.nextLine();
+
+                            System.out.println("Digite a descricao da refeição: ");
+                            String descricaoRefeicao = sc.nextLine();
+                            sc.nextLine();
+
+                            System.out.println("Digite o número de calorias: ");
+                            Double calorias = sc.nextDouble();
+                            sc.nextLine();
+
+                            System.out.println("Digite o horário dessa refeição: ");
+                            String horarioRefeicao = sc.nextLine();
+                            sc.nextLine();
+
+                            Refeicao refeicao = new Refeicao(nomeRefeicao, descricaoRefeicao, calorias, horarioRefeicao);
+                            planoAlimentar.adicionarRefeicao(refeicao);
+                        }
+                        System.out.println("✅ Plano alimentar adicionado com sucesso!");
+                        linha();
+
+                    }else if(opcaoTreinador == 3){
+                        linha();
+                        treino.listarExercicio();
+                        linha();
+                    }
+                    else if(opcaoTreinador == 4){
+                        linha();
+                        planoAlimentar.listarRefeicao();
+                        linha();
+                    }
+                    else if(opcaoTreinador == 5){
+                        linha();
+                        treino.listarExercicio();
+                        System.out.println("Escolha qual o número do exércicio que deseja remover: ");
+                        System.out.println("(Os exercícios estão em ordem crescente de cima para baixo iniciando pelo 0)");
+                        int codigo = sc.nextInt();
+                        treino.removerExercicio(codigo);
+                        linha();
+                    }
+                    else if(opcaoTreinador == 6){
+                        linha();
+                        planoAlimentar.listarRefeicao();
+                        System.out.println("Escolha qual o número da refeição que deseja remover: ");
+                        System.out.println("(As refeições estão em ordem crescente de cima para baixo iniciando pelo 0!)");
+                        int codigo = sc.nextInt();
+                        planoAlimentar.removerRefeicao(codigo);
+                        linha();
+                    }
+                    else if(opcaoTreinador == 7){
+                        System.out.println("Obrigado, volte sempre!");
+                        System.exit(0);
+                    }else{
+                        System.out.println("Opção inválida!");
+                    }
+            }
 
             }else if(trA == 'a'){
-                Adm adm = new Adm(null, null, null, null, null, null, null);
+                
                 linha();
                 System.out.println("Digite seu número de acesso: ");
                 int numeroAcesso = sc.nextInt();
@@ -67,6 +179,8 @@ public class Program {
                 sc.nextLine();
                 linha();
 
+                Adm adm = new Adm(nomeAdm, numeroAcesso, senhaAdm);
+                
                 adm.exibeMenu();
                 int opcaoAdm = sc.nextInt();
 
@@ -116,7 +230,7 @@ public class Program {
 			System.out.println("= CRIAÇÃO DE CONTA =");
 			linha();
 			System.out.print("Email: ");
-			String email = sc.next();
+			email = sc.next();
 			sc.nextLine();
 			System.out.print("Senha: ");
 			String senha = sc.next();
@@ -224,117 +338,71 @@ public class Program {
                     }
 			    } // apagar
 
-                else if (escolha == 4) {
-                    System.out.println(aluno.getPlanoAcademia());
-                }
-                // apagars
-                /*
-                * 
-                * 
-                * /* /* case 5: System.out.println("Nome: " + aluno.getName());
-                * System.out.println("CEP: " + aluno.getCep()); System.out.println("Email:" +
-                * registro.getEmails()); System.out.println("Senha: " + registro.getSenhas());
-                * System.out.println("CPF: " + aluno.getCpf()); System.out.println("Telefone: "
-                * + aluno.getTelefone()); System.out.println("Data de Nascimento: " +
-                * aluno.getDataNascimento());
-                * 
-                * System.out.println(
-                * "Digite a opção desejada: (Para alterar os outros valores entre em contato com a sua unidade de cadastro)\n1- Alterar Email\n2- Alterar Senha\n3- Sair"
-                * ); int opcaoDadosPessoais = sc.nextInt(); sc.nextLine(); // limpa o \n
-                * 
-                * if (opcaoDadosPessoais == 1) { System.out.println("Digite o novo email: ");
-                * registro.alterarEmail(emailAcesso, sc.nextLine()); ;
-                * 
-                * } else if (opcaoDadosPessoais == 2) {
-                * System.out.println("Digite a nova senha: ");
-                * registro.alterarSenha(emailAcesso, sc.nextLine()); } break;
-                * 
-                * case 6: PlanoAlimentar planoAlimentar = new PlanoAlimentar();
-                * planoAlimentar.listarRefeicao(); break;
-                * 
-                * case 7: System.out.println("Obrigado volte sempre!"); System.exit(0); break;
-                * 
-                * default: System.out.println("Digite uma opção válida"); break; } } } else {
-                * System.out.println("Credenciais inválidas. Tente novamente."); } }
-                * 
-                * if (alunoOUadm == 'd') {
-                * 
-                * System.out.print("Nome: "); sc.nextLine(); String nome = sc.nextLine();
-                * 
-                * System.out.print("Data de nascimento (dd/MM/yyyy): "); String dataString =
-                * sc.nextLine();
-                * 
-                * System.out.print("Telefone: "); Long telefone = sc.nextLong(); sc.nextLine();
-                * // limpa o \n deixado pelo nextInt()
-                * 
-                * System.out.print("CPF: "); Long cpf = sc.nextLong(); sc.nextLine(); // limpa
-                * o \n
-                * 
-                * System.out.print("CEP: "); Integer cep = sc.nextInt(); sc.nextLine(); //
-                * limpa o \n
-                * 
-                * DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                * LocalDate dataNascimento = LocalDate.parse(dataString, formato);
-                * 
-                * boolean validado = false; while (!validado) {
-                * 
-                * System.out.println("Digite seu número de acesso: "); int numeroAcesso =
-                    * sc.nextInt(); sc.nextLine(); // limpa o \n
-                * 
-                * System.out.println("Digite sua senha de acesso: "); String senhaAdm =
-                    * sc.nextLine(); sc.nextLine(); // limpa o \n
-                * 
-                * Adm adm = new Adm(nome, dataNascimento, telefone, cpf, cep, numeroAcesso,
-                * senhaAdm);
-                * 
-                * if (adm.autenticacao(numeroAcesso, senhaAdm)) { validado = true; }
-                * 
-                * }
-                * 
-                * System.out.println("Administrador logado.");
-                * System.out.println("Olá, seja bem vindo! O que você deseja fazer? ");
-                * System.out.
-                * println("1- Cadastrar Treinador\n2- Visualizar Lista de Alunos\n3- Editar Planos\n4- Sair"
-                * ); int opcaoPrincipal = sc.nextInt();
-                * 
-                * switch (opcaoPrincipal) { case 1: System.out.print("Nome: "); sc.nextLine();
-                * String nomeTreinador = sc.nextLine();
-                * 
-                * System.out.print("Data de nascimento (dd/MM/yyyy): "); String
-                * dataStringTreinador = sc.nextLine();
-                * 
-                * System.out.print("Telefone: "); Long telefoneTreinador = sc.nextLong();
-                * sc.nextLine(); // limpa o \n deixado pelo nextInt()
-                * 
-                * System.out.print("CPF: "); Long cpfTreinador = sc.nextLong(); sc.nextLine();
-                * // limpa o \n
-                * 
-                * System.out.print("CEP: "); Integer cepTreinador = sc.nextInt();
-                * sc.nextLine(); // limpa o \n
-                * 
-                * System.out.println("Qual a especialização? "); String especializacao =
-                * sc.nextLine(); sc.nextLine(); // limpa o \n
-                * 
-                * System.out.println("Qual a disponibilidade? "); String disponibilidade =
-                * sc.nextLine(); sc.nextLine(); // limpa o \n DateTimeFormatter
-                * formatoTreinador = DateTimeFormatter.ofPattern("dd/MM/yyyy"); LocalDate
-                * dataNascimentoTreinador = LocalDate.parse(dataString, formato);
-                * 
-                * // Treinador treinador = new Treinador(nomeTreinador,
-                * dataNascimentoTreinador, // telefoneTreinador, cpfTreinador, cepTreinador,
-                * especializacao, // disponibilidade); break;
-                * 
-                    * case 2: System.out.println(aluno);
-                * 
-                    * break;
-                    * 
-                * case 3:
-                * 
-                * default: break;
-                */
+			else if (escolha == 4) {
+				System.out.println(aluno.getPlanoAcademia());
+			}
+			else if(escolha == 5) {
+				System.out.println("===== DADOS PESSOAIS =====");
+				System.out.println("Nome: " + aluno.getName());
+				System.out.println("CEP: " + aluno.getCep());
+				System.out.println("Email: " + registro.getEmails());
+				System.out.println("Senha: " + registro.getSenhas());
+				System.out.println("CPF: " + aluno.getCpf());
+				System.out.println("Telefone: " + aluno.getTelefone());
+				System.out.println("Data de Nascimento: " + aluno.getDataNascimento());
+
+				System.out.println("\nDeseja alterar alguma informação?");
+				System.out.println("Atenção: Para alterar os outros dados, entre em contato com a sua unidade de cadastro.");
+				System.out.println("1 - Alterar Email");
+				System.out.println("2 - Alterar Senha");
+				System.out.println("3 - Sair");
+				System.out.print("Digite a opção desejada: ");
+
+				int opcaoDadosPessoais = sc.nextInt();
+				sc.nextLine(); // Limpar o \n pendente
+
+				switch (opcaoDadosPessoais) {
+				    case 1:
+				        System.out.print("Digite o novo email: ");
+				        String novoEmail = sc.nextLine();
+				        registro.alterarEmail(email, novoEmail);
+				        System.out.println("Email atualizado com sucesso!");
+				        break;
+
+				    case 2:
+				        System.out.print("Digite a nova senha: ");
+				        String novaSenha = sc.nextLine();
+				        registro.alterarSenha(email, novaSenha);
+				        System.out.println("Senha atualizada com sucesso!");
+				        break;
+
+				    case 3:
+				        System.out.println("Retornando ao menu...");
+				        break;
+
+				    default:
+				        System.out.println("Opção inválida. Retornando ao menu...");
+				        break;
+				}
+			}else if(escolha == 6) {
+                 planoAlimentar.listarRefeicao();
             }
-        }
-	}
+            //else if(escolha == 7){ 
+                //caso queira voltar para o login
+                //}   
+            else if(escolha == sair) { 
+                linha();
+                System.out.println(" =-= Obrigado volte sempre! =-= ");
+                linha();
+            }
+            else if(escolha > sair || escolha < 1) {
+                System.out.println("Digite uma opção válida");
+            }
+		}
+    }
+         
+
+    }
 
 	public static void linha() {
 		System.out.println("==================================================");

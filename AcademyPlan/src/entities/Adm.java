@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import Interfaces.GerenciamentoPlano;
 import modelos.PlanoAcademia;
 
-public class Adm extends Pessoa implements GerenciamentoPlano{
-
+public class Adm implements GerenciamentoPlano{
+    private String nome;
     private Integer numeroAcesso; // insira o número de acesso aqui
     private String senhaAdm; // insira sua senha de acesso aqui
 
@@ -21,9 +21,8 @@ public class Adm extends Pessoa implements GerenciamentoPlano{
     }
     
 
-    public Adm(String name, LocalDate dataNascimento, Long telefone, Long cpf, Integer cep, Integer numeroAcesso,
-            String senhaAdm) {
-        super(name, dataNascimento, telefone, cpf, cep);
+    public Adm(String name, Integer numeroAcesso, String senhaAdm) {
+        this.nome = name;
         this.numeroAcesso = numeroAcesso;
         this.senhaAdm = senhaAdm;
     }

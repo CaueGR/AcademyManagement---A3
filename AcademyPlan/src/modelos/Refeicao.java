@@ -4,12 +4,13 @@ public class Refeicao {
 	private String name;
 	private String descricao;
 	private Double calorias;
+	private String horarioRefeicao;
 	
-	public Refeicao(String name, String descricao, Double calorias) {
-		super();
+	public Refeicao(String name, String descricao, Double calorias, String horarioRefeicao) {
 		this.name = name;
 		this.descricao = descricao;
 		this.calorias = calorias;
+		this.horarioRefeicao = horarioRefeicao;
 	}
 
 	public String getName() {
@@ -38,7 +39,7 @@ public class Refeicao {
 
 	@Override
 	public String toString() {
-		return "Refeicao [name=" + name + ", descricao=" + descricao + ", calorias=" + calorias + "]";
+		return "Refeição: " + name + "\n" +  "Descrição: " + descricao +  "\n"+  "Calorias: " + calorias;
 	}
 	
 	
