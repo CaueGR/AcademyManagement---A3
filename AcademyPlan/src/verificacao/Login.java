@@ -3,6 +3,8 @@ package verificacao;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import entities.Aluno;
+
 public class Login {
     private Registro registro;
     
@@ -16,7 +18,7 @@ public class Login {
     
     
     
-    public boolean autenticar() {
+    public boolean autenticar(Aluno aluno) {
         Scanner sc = new Scanner(System.in);
         int MAX_TENTATIVAS = 3;
         int tentativas = 0;
@@ -54,7 +56,7 @@ public class Login {
             System.out.print("Digite nova senha: ");
             String novaSenha = sc.nextLine();
             
-            registro.cadastrarUsuario(novoEmail, novaSenha);
+            registro.cadastrarUsuario(novoEmail, novaSenha, aluno);
         } else {
             System.out.println("Encerrando o programa.");
         }

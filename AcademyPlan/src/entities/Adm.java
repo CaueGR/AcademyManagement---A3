@@ -1,15 +1,16 @@
 package entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import Interfaces.GerenciamentoPlano;
 import modelos.PlanoAcademia;
 
-public class Adm extends Pessoa implements GerenciamentoPlano{
+public class Adm implements GerenciamentoPlano{
 
-    private Integer numeroAcesso; // insira o número de acesso aqui
-    private String senhaAdm; // insira sua senha de acesso aqui
-
+	private String nome;
+    private Integer numeroAcesso; 
+    private String senhaAdm; 
     
     public boolean autenticacao(int numeroAcesso, String senhaAdm){
         if(numeroAcesso == this.numeroAcesso && senhaAdm.equals(this.senhaAdm)){
@@ -20,17 +21,44 @@ public class Adm extends Pessoa implements GerenciamentoPlano{
         }
     }
     
-
-    public Adm(String name, LocalDate dataNascimento, Long telefone, Long cpf, Integer cep, Integer numeroAcesso,
-            String senhaAdm) {
-        super(name, dataNascimento, telefone, cpf, cep);
-        this.numeroAcesso = numeroAcesso;
-        this.senhaAdm = senhaAdm;
+    public Adm() {
+    	
     }
-
     
+	public Adm(String nome, Integer numeroAcesso, String senhaAdm) {
+		this.nome = nome;
+		this.numeroAcesso = numeroAcesso;
+		this.senhaAdm = senhaAdm;
+	}
+	
 
-    @Override
+	
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Integer getNumeroAcesso() {
+		return numeroAcesso;
+	}
+
+	public void setNumeroAcesso(Integer numeroAcesso) {
+		this.numeroAcesso = numeroAcesso;
+	}
+
+	public String getSenhaAdm() {
+		return senhaAdm;
+	}
+
+	public void setSenhaAdm(String senhaAdm) {
+		this.senhaAdm = senhaAdm;
+	}
+
+	@Override
     public void criarPlanoAcademia() {
         
     
@@ -65,5 +93,18 @@ public class Adm extends Pessoa implements GerenciamentoPlano{
     public void excluirPlanoAliementar() {
         // TODO Auto-generated method stub
 
+    }
+
+	
+    
+    public void exibeMenu() {
+        System.out.println("\n================= MENU PRINCIPAL =================");
+        System.out.println("|                                                |");
+        System.out.println("|  1 - 📅 Cadastrar treinador                    |");
+        System.out.println("|  2 - 🏋️ Visualizar lista de alunos             |");
+        System.out.println("|  3 - 📋 Editar planos                          |");
+        System.out.println("|  4 - ❌ Sair                                   |");
+        System.out.println("|________________________________________________|");
+        System.out.print("Escolha uma opção: ");
     }
 }

@@ -5,7 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
 
+import entities.Adm;
 import entities.Aluno;
+import entities.Treinador;
 import modelos.PlanoAcademia;
 import modelos.PlanoAlimentar;
 import verificacao.Login;
@@ -33,13 +35,8 @@ public class Program {
 		System.out.print("Você é aluno? (s/n): ");
 		char entidade = sc.next().charAt(0);
 
-		/*
-		 * if(entidade == 'n') { System.out.print("Treinador/Adm? "); char trA =
-		 * sc.next().charAt(0); }
-		 */
-
 		linha();
-		System.out.println("Já possui o cadastro? (S/N)");
+	/*	System.out.println("Já possui o cadastro? (S/N)");
 		char jaPossuiCadastro = sc.next().charAt(0);
 
 		if (jaPossuiCadastro == 's') {
@@ -129,9 +126,9 @@ public class Program {
 				}
 			}
 
-			registro.cadastrarUsuario(email, senha);
+			registro.cadastrarUsuario(email, senha, aluno);
 			registro.confirmarSenha(confirmaSenha, senha);
-			login.autenticar();
+			login.autenticar(aluno);
 
 		}
 
@@ -246,7 +243,203 @@ public class Program {
 			else if(escolha > sair || escolha < 1) {
 				System.out.println("Digite uma opção válida");
 			}
-		} 
+		} */
+		if(entidade == 'n') {
+            System.out.print("Treinador/Adm? "); 
+            char trA = sc.next().charAt(0);
+
+            if(trA == 't'){
+                Treinador treinador = new Treinador(null, null, null, null, null, null);
+                linha();
+                System.out.println(" Realize seu login ");
+                System.out.println("Email: ");
+                String emailTreinador = sc.nextLine();
+                System.out.println("Senha: ");
+                String senhaTreinador = sc.nextLine();
+                sc.nextLine();
+                linha();
+
+                treinador.exibeMenu();
+                int opcaoTreinador = sc.nextInt();
+
+            } 
+            if(trA == 'a'){
+                Adm adm1 = new Adm("Admin", 2131, "@1234" );
+                linha();
+                System.out.println("Digite seu número de acesso: ");
+                int numeroAcesso = sc.nextInt();
+                sc.nextLine();
+
+                System.out.println("Digite sua senha de acesso: ");
+                String senhaAdm = sc.nextLine();
+                sc.nextLine();
+                
+
+                System.out.println("Digite seu nome: ");
+                String nomeAdm = sc.nextLine();
+                sc.nextLine();
+                linha();
+                while(adm1.getNumeroAcesso() != numeroAcesso ) {
+                	System.out.println("Numero de acesso incorreto"); 
+                	System.out.println("Digite seu número de acesso: ");
+                     numeroAcesso = sc.nextInt();
+                     adm1.setNumeroAcesso(numeroAcesso);
+                     sc.nextLine();
+                }
+              /*  while(adm1.getSenhaAdm() != senhaAdm) {
+                	System.out.println("Senha incorreta"); 
+                	System.out.println("Digite sua senha de acesso: ");
+                    senhaAdm = sc.nextLine();
+                    adm1.setSenhaAdm(senhaAdm);
+                    sc.nextLine();
+                }*/
+             
+                
+                String nomee = "Caue";
+    			String dataStringe = "25/12/2004";
+
+    			long telefonee = 5104476;
+    		
+    			long cpfe = 91823;
+    					
+    			Integer cepe = 91180;
+    			
+
+    			DateTimeFormatter formatoe = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    			LocalDate dataNascimentoe = LocalDate.parse(dataStringe, formatoe);
+
+    			aluno = new Aluno(nomee, dataNascimentoe, telefonee, cpfe, cepe);
+    			 nomee = "Kaua";
+    			dataStringe = "15/11/2005";
+
+    			telefonee = 7899;
+    		
+    			 cpfe = 123123;
+    					
+    			 cepe = 32231;
+    			
+
+    			formatoe = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    			dataNascimentoe = LocalDate.parse(dataStringe, formatoe);
+
+    			Aluno aluno2 = new Aluno(nomee, dataNascimentoe, telefonee, cpfe, cepe);
+                registro.adicionarAlunoLista(aluno);
+                registro.adicionarAlunoLista(aluno2);
+
+                
+                
+                adm1.exibeMenu();
+                int opcaoAdm = sc.nextInt();
+                
+                if(opcaoAdm == 1) {
+                	linha();
+                	System.out.println("= CADASTRO DE NOVO USUÁRIO =");
+        			linha();
+        			sc.nextLine();
+        			System.out.print("Nome: ");
+        			String nomeTreinador = sc.nextLine();
+
+        			System.out.print("Data de nascimento (dd/MM/yyyy): ");
+        			String dataString = sc.nextLine();
+
+        			System.out.print("Telefone: ");
+        			Long telefone = sc.nextLong();
+        			sc.nextLine();
+
+        			System.out.print("CPF: ");
+        			Long cpf = sc.nextLong();
+        			sc.nextLine();
+
+        			System.out.print("CEP: ");
+        			Integer cep = sc.nextInt();
+        			sc.nextLine();
+        			
+        			System.out.print("especializacao: ");
+        			String especializacao = sc.nextLine();
+
+        			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        			LocalDate dataNascimento = LocalDate.parse(dataString, formato);
+
+        			Treinador treind = new Treinador(nomeTreinador, dataNascimento, telefone, cpf, cep, especializacao );
+
+        			linha();
+        			System.out.println("= CRIAÇÃO DE CONTA =");
+        			linha();
+        			System.out.print("Email: ");
+        			email = sc.next();
+        			sc.nextLine();
+        			System.out.print("Senha: ");
+        			String senha = sc.next();
+        			System.out.print("Confirme a senha: ");
+        			String confirmaSenha = sc.next();
+        			linha();
+        			registro.cadastrarTreinador(email, senha);
+        			registro.confirmarSenha(confirmaSenha, senha);
+                }
+                
+                else if(opcaoAdm == 2) {
+                	registro.vizualizarListaAlunos();
+                }
+                else if(opcaoAdm == 3) {
+                	
+                	PlanoAcademia basico = new PlanoAcademia("Básico", 100.00,
+    						"✅ O plano Básico é ideal para quem quer dar o pontapé inicial sem pesar o bolso!");
+                	
+                	PlanoAcademia prime = new PlanoAcademia("Prime", 120.00,
+    						"🔥 Essa opção é para quem não tem medo de desafios!");
+                	
+                	PlanoAcademia vip = new PlanoAcademia("Vip", 140.00,
+    						"🏆 O nível máximo que você pode alcançar, para quem sabe onde quer chegar!");
+                	linha();
+                	System.out.println(basico);
+                	System.out.println("----------------------------------");
+                	System.out.println(prime);
+                	System.out.println("----------------------------------");
+                	System.out.println(vip);
+                	linha();
+                	System.out.println("""
+    						\n📋 Escolha qual plano deseja alterar valor:
+    						-------------------------------
+    						1️ - Básico
+    						2️ - Prime
+    						3️ - Vip
+    						-------------------------------
+    						""");
+                	int editplanos = sc.nextInt();
+                	
+                	switch (editplanos) {
+					case 1: 
+						System.out.println("Para qual valor? ");
+						basico.setPrice(sc.nextDouble());
+						System.out.println("Valor Atualizado! ");
+						System.out.println(basico);
+						break;
+					case 2:
+						System.out.println("Para qual valor? ");
+						prime.setPrice(sc.nextDouble());
+						System.out.println("Valor Atualizado! ");
+						System.out.println(prime);
+						break;
+					case 3:
+						System.out.println("Para qual valor? ");
+						vip.setPrice(sc.nextDouble());
+						System.out.println("Valor Atualizado! ");
+						System.out.println(vip);
+						break;
+					
+					default:
+						System.out.println("Insira um numero valido! ");
+					}
+    		
+                }
+                else if(opcaoAdm == 4) {
+                	System.out.println("Até mais! ");
+                }
+        }
+		
+
+
+        }
 		/*
 		 * 
 		 * 

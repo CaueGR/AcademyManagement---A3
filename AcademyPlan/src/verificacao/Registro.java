@@ -3,11 +3,13 @@ package verificacao;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import entities.Aluno;
+
 public class Registro {
 	
 	private ArrayList<String> emails = new ArrayList<>();
 	private ArrayList<String> senhas = new ArrayList<>();
-
+	private ArrayList<Aluno> listAlunos = new ArrayList<>();
 	
 	public Registro() {
 		emails = new ArrayList<>();
@@ -59,18 +61,30 @@ public void alterarSenha(String email, String novaSenha) {
     }
 }
 	    
-	    public void cadastrarUsuario(String email, String senha) {
+	    public void cadastrarUsuario(String email, String senha, Aluno aluno) {
 			if (!emailExiste(email)) {
 		            emails.add(email);
 		            senhas.add(senha);
 		            System.out.println("==================================================");
 		            System.out.println("Usuário cadastrado com sucesso!");
+		            listAlunos.add(aluno);
 		        } else if(emailExiste(email)){
 		            System.out.println("Email já cadastrado.");
 		            System.out.println("Encerrando o programa.");
-		            
 		        }
 		    }
+	    public void cadastrarTreinador(String email, String senha) {
+				if (!emailExiste(email)) {
+			            emails.add(email);
+			            senhas.add(senha);
+			            System.out.println("==================================================");
+			            System.out.println("Usuário cadastrado com sucesso!");
+			        } else if(emailExiste(email)){
+			            System.out.println("Email já cadastrado.");
+			            System.out.println("Encerrando o programa.");
+			            
+			        }
+			    }
 	    public void confirmarSenha(String senha, String confirmaSenha) {
 	    	if(confirmaSenha.equals(senha)) {
 
@@ -79,10 +93,13 @@ public void alterarSenha(String email, String novaSenha) {
 	    	}
 	    	
 	    }
-	    public void cadastrandoUsuario() {
-	    	 Scanner sc = new Scanner(System.in);
-	    	 
-	    	 sc.close();
+	    public void vizualizarListaAlunos() {
+	    	for(Aluno x : listAlunos) {
+	    		System.out.println(x);
+	    	}
+	    }
+	    public void adicionarAlunoLista(Aluno aluno) {
+	    	listAlunos.add(aluno);
 	    }
 	}
 	

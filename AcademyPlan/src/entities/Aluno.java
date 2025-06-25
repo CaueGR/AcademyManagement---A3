@@ -117,8 +117,8 @@ public class Aluno extends Pessoa {
 
     @Override
     public String toString() {
-        return "Aluno [planoAcademia=" + planoAcademia + ", planoAlimentar=" + planoAlimentar + ", treino=" + treino
-                + "]";
+        return "Aluno: " + name + " | " + calcularIdade() + " anos | Celular: " +  telefone + " | CEP: " + cep;
+               
     }
     
     

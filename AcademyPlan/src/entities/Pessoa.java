@@ -7,11 +7,11 @@ public class Pessoa {
 
 	
 	
-	private String name;
+	protected String name;
 	private LocalDate dataNascimento;
-	private Long telefone;
+	protected Long telefone;
 	private Long cpf;
-	private Integer cep;
+	protected Integer cep;
 	
 	public Pessoa(String name, LocalDate dataNascimento, Long telefone, Long cpf, Integer cep) {
 		this.name = name;
