@@ -28,6 +28,17 @@ public class Adm extends Pessoa implements GerenciamentoPlano{
         this.senhaAdm = senhaAdm;
     }
 
+    public void exibeMenu() {
+    	System.out.println("\n================= MENU PRINCIPAL =================");
+    	System.out.println("|                                                |");
+    	System.out.println("|  1 - 📅 Cadastrar treinador                    |");
+    	System.out.println("|  2 - 🏋️ Visualizar lista de alunos             |");
+    	System.out.println("|  3 - 📋 Editar planos                          |");
+    	System.out.println("|  4 - ❌ Sair                                   |");
+    	System.out.println("|________________________________________________|");
+    	System.out.print("Escolha uma opção: ");
+    }
+
     
 
     @Override

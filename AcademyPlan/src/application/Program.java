@@ -5,7 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
 
+import entities.Adm;
 import entities.Aluno;
+import entities.Treinador;
 import modelos.PlanoAcademia;
 import verificacao.Login;
 import verificacao.Registro;
@@ -30,10 +32,48 @@ public class Program {
 		System.out.print("Você é aluno? (s/n): ");
 		char entidade = sc.next().charAt(0);
 
-		/*
-		 * if(entidade == 'n') { System.out.print("Treinador/Adm? "); char trA =
-		 * sc.next().charAt(0); }
-		 */
+		
+		if(entidade == 'n') {
+            System.out.print("Treinador/Adm? "); 
+            char trA = sc.next().charAt(0);
+            
+            if(trA == 't'){
+                Treinador treinador = new Treinador(null, null, null, null, null, null, null);
+                linha();
+                System.out.println(" Realize seu login ");
+                System.out.println("Email: ");
+                String emailTreinador = sc.nextLine();
+                System.out.println("Senha: ");
+                String senhaTreinador = sc.nextLine();
+                sc.nextLine();
+                linha();
+
+                treinador.exibeMenu();
+                int opcaoTreinador = sc.nextInt();
+
+            }else if(trA == 'a'){
+                Adm adm = new Adm(null, null, null, null, null, null, null);
+                linha();
+                System.out.println("Digite seu número de acesso: ");
+                int numeroAcesso = sc.nextInt();
+                sc.nextLine();
+
+                System.out.println("Digite sua senha de acesso: ");
+                String senhaAdm = sc.nextLine();
+                sc.nextLine();
+
+                System.out.println("Digite seu nome: ");
+                String nomeAdm = sc.nextLine();
+                sc.nextLine();
+                linha();
+
+                adm.exibeMenu();
+                int opcaoAdm = sc.nextInt();
+
+                
+            }
+        }
+        
 
 		linha();
 		System.out.println("Já possui o cadastro? (S/N)");
@@ -133,9 +173,11 @@ public class Program {
 		}
 
 		if (entidade == 's') {
-			aluno.exibeMenu();
-			int escolha = sc.nextInt();
-			if (escolha == 1) {
+            int escolha = 0;
+            while(escolha != 7){
+			    aluno.exibeMenu();
+			    escolha = sc.nextInt();
+			    if (escolha == 1) {
 				linha();
 				System.out.println("🗓️  AGENDAMENTO DE CONSULTA COM TREINADOR");
 				linha();
@@ -153,143 +195,145 @@ public class Program {
 				linha();
 				System.out.printf("✅ Consulta agendada para %s às %s.\n", consultaTreinador, horarioConsulta);
 				linha();
-			} else if (escolha == 2) {
 
-				linha();
-				System.out.println("🏋️  AGENDAMENTO DE TREINO");
-				linha();
+			    } else if (escolha == 2) {
 
-				System.out.print("Informe a data desejada (dd/MM/yyyy): ");
-				String dataTreino = sc.nextLine();
+                    linha();
+                    System.out.println("🏋️  AGENDAMENTO DE TREINO");
+                    linha();
 
-				DateTimeFormatter formatoAgendamentoTreino = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-				LocalDate dataAgendamentoTreino = LocalDate.parse(dataTreino, formatoAgendamentoTreino);
+                    System.out.print("Informe a data desejada (dd/MM/yyyy): ");
+                    String dataTreino = sc.nextLine();
 
-				System.out.print("Informe o horário desejado (ex: 15:00): ");
-				String horarioTreino = sc.nextLine();
+                    DateTimeFormatter formatoAgendamentoTreino = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate dataAgendamentoTreino = LocalDate.parse(dataTreino, formatoAgendamentoTreino);
 
-				linha();
-				System.out.printf("✅ Treino agendado para %s às %s.\n",
-						dataAgendamentoTreino.format(formatoAgendamentoTreino), horarioTreino);
-				linha();
-			} else if (escolha == 3) {
+                    System.out.print("Informe o horário desejado (ex: 15:00): ");
+                    String horarioTreino = sc.nextLine();
 
-				aluno.planoTreino();
-				char yORn = sc.next().charAt(0);
-				if (yORn == 's') {
-					aluno.treinoCompleto();
-				}
-			} // apagar
+                    linha();
+                    System.out.printf("✅ Treino agendado para %s às %s.\n",
+                            dataAgendamentoTreino.format(formatoAgendamentoTreino), horarioTreino);
+                    linha();
+			    } else if (escolha == 3) {
 
-			else if (escolha == 4) {
-				System.out.println(aluno.getPlanoAcademia());
-			}
-		} // apagars
-		/*
-		 * 
-		 * 
-		 * /* /* case 5: System.out.println("Nome: " + aluno.getName());
-		 * System.out.println("CEP: " + aluno.getCep()); System.out.println("Email:" +
-		 * registro.getEmails()); System.out.println("Senha: " + registro.getSenhas());
-		 * System.out.println("CPF: " + aluno.getCpf()); System.out.println("Telefone: "
-		 * + aluno.getTelefone()); System.out.println("Data de Nascimento: " +
-		 * aluno.getDataNascimento());
-		 * 
-		 * System.out.println(
-		 * "Digite a opção desejada: (Para alterar os outros valores entre em contato com a sua unidade de cadastro)\n1- Alterar Email\n2- Alterar Senha\n3- Sair"
-		 * ); int opcaoDadosPessoais = sc.nextInt(); sc.nextLine(); // limpa o \n
-		 * 
-		 * if (opcaoDadosPessoais == 1) { System.out.println("Digite o novo email: ");
-		 * registro.alterarEmail(emailAcesso, sc.nextLine()); ;
-		 * 
-		 * } else if (opcaoDadosPessoais == 2) {
-		 * System.out.println("Digite a nova senha: ");
-		 * registro.alterarSenha(emailAcesso, sc.nextLine()); } break;
-		 * 
-		 * case 6: PlanoAlimentar planoAlimentar = new PlanoAlimentar();
-		 * planoAlimentar.listarRefeicao(); break;
-		 * 
-		 * case 7: System.out.println("Obrigado volte sempre!"); System.exit(0); break;
-		 * 
-		 * default: System.out.println("Digite uma opção válida"); break; } } } else {
-		 * System.out.println("Credenciais inválidas. Tente novamente."); } }
-		 * 
-		 * if (alunoOUadm == 'd') {
-		 * 
-		 * System.out.print("Nome: "); sc.nextLine(); String nome = sc.nextLine();
-		 * 
-		 * System.out.print("Data de nascimento (dd/MM/yyyy): "); String dataString =
-		 * sc.nextLine();
-		 * 
-		 * System.out.print("Telefone: "); Long telefone = sc.nextLong(); sc.nextLine();
-		 * // limpa o \n deixado pelo nextInt()
-		 * 
-		 * System.out.print("CPF: "); Long cpf = sc.nextLong(); sc.nextLine(); // limpa
-		 * o \n
-		 * 
-		 * System.out.print("CEP: "); Integer cep = sc.nextInt(); sc.nextLine(); //
-		 * limpa o \n
-		 * 
-		 * DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		 * LocalDate dataNascimento = LocalDate.parse(dataString, formato);
-		 * 
-		 * boolean validado = false; while (!validado) {
-		 * 
-		 * System.out.println("Digite seu número de acesso: "); int numeroAcesso =
-		 * sc.nextInt(); sc.nextLine(); // limpa o \n
-		 * 
-		 * System.out.println("Digite sua senha de acesso: "); String senhaAdm =
-		 * sc.nextLine(); sc.nextLine(); // limpa o \n
-		 * 
-		 * Adm adm = new Adm(nome, dataNascimento, telefone, cpf, cep, numeroAcesso,
-		 * senhaAdm);
-		 * 
-		 * if (adm.autenticacao(numeroAcesso, senhaAdm)) { validado = true; }
-		 * 
-		 * }
-		 * 
-		 * System.out.println("Administrador logado.");
-		 * System.out.println("Olá, seja bem vindo! O que você deseja fazer? ");
-		 * System.out.
-		 * println("1- Cadastrar Treinador\n2- Visualizar Lista de Alunos\n3- Editar Planos\n4- Sair"
-		 * ); int opcaoPrincipal = sc.nextInt();
-		 * 
-		 * switch (opcaoPrincipal) { case 1: System.out.print("Nome: "); sc.nextLine();
-		 * String nomeTreinador = sc.nextLine();
-		 * 
-		 * System.out.print("Data de nascimento (dd/MM/yyyy): "); String
-		 * dataStringTreinador = sc.nextLine();
-		 * 
-		 * System.out.print("Telefone: "); Long telefoneTreinador = sc.nextLong();
-		 * sc.nextLine(); // limpa o \n deixado pelo nextInt()
-		 * 
-		 * System.out.print("CPF: "); Long cpfTreinador = sc.nextLong(); sc.nextLine();
-		 * // limpa o \n
-		 * 
-		 * System.out.print("CEP: "); Integer cepTreinador = sc.nextInt();
-		 * sc.nextLine(); // limpa o \n
-		 * 
-		 * System.out.println("Qual a especialização? "); String especializacao =
-		 * sc.nextLine(); sc.nextLine(); // limpa o \n
-		 * 
-		 * System.out.println("Qual a disponibilidade? "); String disponibilidade =
-		 * sc.nextLine(); sc.nextLine(); // limpa o \n DateTimeFormatter
-		 * formatoTreinador = DateTimeFormatter.ofPattern("dd/MM/yyyy"); LocalDate
-		 * dataNascimentoTreinador = LocalDate.parse(dataString, formato);
-		 * 
-		 * // Treinador treinador = new Treinador(nomeTreinador,
-		 * dataNascimentoTreinador, // telefoneTreinador, cpfTreinador, cepTreinador,
-		 * especializacao, // disponibilidade); break;
-		 * 
-		 * case 2: System.out.println(aluno);
-		 * 
-		 * break;
-		 * 
-		 * case 3:
-		 * 
-		 * default: break;
-		 */
+                    aluno.planoTreino();
+                    char yORn = sc.next().charAt(0);
+                    if (yORn == 's') {
+                        aluno.treinoCompleto();
+                    }
+			    } // apagar
 
+                else if (escolha == 4) {
+                    System.out.println(aluno.getPlanoAcademia());
+                }
+                // apagars
+                /*
+                * 
+                * 
+                * /* /* case 5: System.out.println("Nome: " + aluno.getName());
+                * System.out.println("CEP: " + aluno.getCep()); System.out.println("Email:" +
+                * registro.getEmails()); System.out.println("Senha: " + registro.getSenhas());
+                * System.out.println("CPF: " + aluno.getCpf()); System.out.println("Telefone: "
+                * + aluno.getTelefone()); System.out.println("Data de Nascimento: " +
+                * aluno.getDataNascimento());
+                * 
+                * System.out.println(
+                * "Digite a opção desejada: (Para alterar os outros valores entre em contato com a sua unidade de cadastro)\n1- Alterar Email\n2- Alterar Senha\n3- Sair"
+                * ); int opcaoDadosPessoais = sc.nextInt(); sc.nextLine(); // limpa o \n
+                * 
+                * if (opcaoDadosPessoais == 1) { System.out.println("Digite o novo email: ");
+                * registro.alterarEmail(emailAcesso, sc.nextLine()); ;
+                * 
+                * } else if (opcaoDadosPessoais == 2) {
+                * System.out.println("Digite a nova senha: ");
+                * registro.alterarSenha(emailAcesso, sc.nextLine()); } break;
+                * 
+                * case 6: PlanoAlimentar planoAlimentar = new PlanoAlimentar();
+                * planoAlimentar.listarRefeicao(); break;
+                * 
+                * case 7: System.out.println("Obrigado volte sempre!"); System.exit(0); break;
+                * 
+                * default: System.out.println("Digite uma opção válida"); break; } } } else {
+                * System.out.println("Credenciais inválidas. Tente novamente."); } }
+                * 
+                * if (alunoOUadm == 'd') {
+                * 
+                * System.out.print("Nome: "); sc.nextLine(); String nome = sc.nextLine();
+                * 
+                * System.out.print("Data de nascimento (dd/MM/yyyy): "); String dataString =
+                * sc.nextLine();
+                * 
+                * System.out.print("Telefone: "); Long telefone = sc.nextLong(); sc.nextLine();
+                * // limpa o \n deixado pelo nextInt()
+                * 
+                * System.out.print("CPF: "); Long cpf = sc.nextLong(); sc.nextLine(); // limpa
+                * o \n
+                * 
+                * System.out.print("CEP: "); Integer cep = sc.nextInt(); sc.nextLine(); //
+                * limpa o \n
+                * 
+                * DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                * LocalDate dataNascimento = LocalDate.parse(dataString, formato);
+                * 
+                * boolean validado = false; while (!validado) {
+                * 
+                * System.out.println("Digite seu número de acesso: "); int numeroAcesso =
+                    * sc.nextInt(); sc.nextLine(); // limpa o \n
+                * 
+                * System.out.println("Digite sua senha de acesso: "); String senhaAdm =
+                    * sc.nextLine(); sc.nextLine(); // limpa o \n
+                * 
+                * Adm adm = new Adm(nome, dataNascimento, telefone, cpf, cep, numeroAcesso,
+                * senhaAdm);
+                * 
+                * if (adm.autenticacao(numeroAcesso, senhaAdm)) { validado = true; }
+                * 
+                * }
+                * 
+                * System.out.println("Administrador logado.");
+                * System.out.println("Olá, seja bem vindo! O que você deseja fazer? ");
+                * System.out.
+                * println("1- Cadastrar Treinador\n2- Visualizar Lista de Alunos\n3- Editar Planos\n4- Sair"
+                * ); int opcaoPrincipal = sc.nextInt();
+                * 
+                * switch (opcaoPrincipal) { case 1: System.out.print("Nome: "); sc.nextLine();
+                * String nomeTreinador = sc.nextLine();
+                * 
+                * System.out.print("Data de nascimento (dd/MM/yyyy): "); String
+                * dataStringTreinador = sc.nextLine();
+                * 
+                * System.out.print("Telefone: "); Long telefoneTreinador = sc.nextLong();
+                * sc.nextLine(); // limpa o \n deixado pelo nextInt()
+                * 
+                * System.out.print("CPF: "); Long cpfTreinador = sc.nextLong(); sc.nextLine();
+                * // limpa o \n
+                * 
+                * System.out.print("CEP: "); Integer cepTreinador = sc.nextInt();
+                * sc.nextLine(); // limpa o \n
+                * 
+                * System.out.println("Qual a especialização? "); String especializacao =
+                * sc.nextLine(); sc.nextLine(); // limpa o \n
+                * 
+                * System.out.println("Qual a disponibilidade? "); String disponibilidade =
+                * sc.nextLine(); sc.nextLine(); // limpa o \n DateTimeFormatter
+                * formatoTreinador = DateTimeFormatter.ofPattern("dd/MM/yyyy"); LocalDate
+                * dataNascimentoTreinador = LocalDate.parse(dataString, formato);
+                * 
+                * // Treinador treinador = new Treinador(nomeTreinador,
+                * dataNascimentoTreinador, // telefoneTreinador, cpfTreinador, cepTreinador,
+                * especializacao, // disponibilidade); break;
+                * 
+                    * case 2: System.out.println(aluno);
+                * 
+                    * break;
+                    * 
+                * case 3:
+                * 
+                * default: break;
+                */
+            }
+        }
 	}
 
 	public static void linha() {
@@ -306,22 +350,3 @@ public class Program {
 	}
 }
 
-/*
- * 
- * 
- * 
- * // INFORMAÇÕES DO USUÁRIO (CLASSE PESSOA)
- * 
- * System.out.println("nome: "); String nome = sc.nextLine();
- * System.out.println("Grupo Muscular: "); String gM = sc.nextLine();
- * System.out.println("Repetições: "); Integer r = sc.nextInt();
- * System.out.println("Series: "); Integer s = sc.nextInt(); Treino t = new
- * Treino(); Exercicio e = new Exercicio(nome, gM, r, s);
- * 
- * 
- * System.out.println("Digite a opção desejada:\n1- Opção1");
- * 
- * t.adicionarExercicio(e);
- * 
- * t.listarExercicio();
- */

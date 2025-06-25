@@ -18,6 +18,18 @@ public class Treinador extends Pessoa implements GerenciamentoPlano {
         this.disponibilidade = disponibilidade;
     }
 
+    public void exibeMenu() {
+    	System.out.println("\n================= MENU PRINCIPAL =================");
+    	System.out.println("|                                                |");
+    	System.out.println("|  1 - 📅 Visualizar agenda pessoal              |");
+    	System.out.println("|  2 - 🏋️ Visualizar lista de alunos             |");
+    	System.out.println("|  3 - 📋 Construir treino                       |");
+    	System.out.println("|  4 - 💳 Construir plano alimentar              |");
+    	System.out.println("|  5 - ❌ Sair                                   |");
+    	System.out.println("|________________________________________________|");
+    	System.out.print("Escolha uma opção: ");
+    }
+
     
 
     public String getEspecializacao() {
