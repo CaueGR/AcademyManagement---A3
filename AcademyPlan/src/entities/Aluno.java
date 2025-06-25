@@ -24,6 +24,7 @@ public class Aluno extends Pessoa {
         this.planoAlimentar = planoAlimentar;
         this.treino = treino;
     }
+   
 
     public void exibeMenu() {
     	System.out.println("\n================= MENU PRINCIPAL =================");

@@ -22,6 +22,7 @@ public class Program {
 		Login login = new Login(registro);
 		Aluno aluno = null;
 		PlanoAcademia planoAcad = new PlanoAcademia();
+		String email = null;
 
 		linha();
 		System.out.println("            BEM-VINDO AO SISTEMA            ");
@@ -76,7 +77,7 @@ public class Program {
 			System.out.println("= CRIAÇÃO DE CONTA =");
 			linha();
 			System.out.print("Email: ");
-			String email = sc.next();
+			email = sc.next();
 			sc.nextLine();
 			System.out.print("Senha: ");
 			String senha = sc.next();
@@ -184,7 +185,51 @@ public class Program {
 			else if (escolha == 4) {
 				System.out.println(aluno.getPlanoAcademia());
 			}
-		} // apagars
+			else if(escolha == 5) {
+				System.out.println("===== DADOS PESSOAIS =====");
+				System.out.println("Nome: " + aluno.getName());
+				System.out.println("CEP: " + aluno.getCep());
+				System.out.println("Email: " + registro.getEmails());
+				System.out.println("Senha: " + registro.getSenhas());
+				System.out.println("CPF: " + aluno.getCpf());
+				System.out.println("Telefone: " + aluno.getTelefone());
+				System.out.println("Data de Nascimento: " + aluno.getDataNascimento());
+
+				System.out.println("\nDeseja alterar alguma informação?");
+				System.out.println("Atenção: Para alterar os outros dados, entre em contato com a sua unidade de cadastro.");
+				System.out.println("1 - Alterar Email");
+				System.out.println("2 - Alterar Senha");
+				System.out.println("3 - Sair");
+				System.out.print("Digite a opção desejada: ");
+
+				int opcaoDadosPessoais = sc.nextInt();
+				sc.nextLine(); // Limpar o \n pendente
+
+				switch (opcaoDadosPessoais) {
+				    case 1:
+				        System.out.print("Digite o novo email: ");
+				        String novoEmail = sc.nextLine();
+				        registro.alterarEmail(email, novoEmail);
+				        System.out.println("Email atualizado com sucesso!");
+				        break;
+
+				    case 2:
+				        System.out.print("Digite a nova senha: ");
+				        String novaSenha = sc.nextLine();
+				        registro.alterarSenha(email, novaSenha);
+				        System.out.println("Senha atualizada com sucesso!");
+				        break;
+
+				    case 3:
+				        System.out.println("Retornando ao menu...");
+				        break;
+
+				    default:
+				        System.out.println("Opção inválida. Retornando ao menu...");
+				        break;
+				}
+			}
+		} 
 		/*
 		 * 
 		 * 
