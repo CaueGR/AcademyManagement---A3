@@ -48,8 +48,7 @@ public class Exercicio {
 
 	@Override
 	public String toString() {
-		return "Exercicio [name=" + name + ", grupoMuscular=" + grupoMuscular + ", repeticoes=" + repeticoes
-				+ ", series=" + series + "]";
+		return "Exercicio: " + name + " \n" + " Grupo Muscular: " + grupoMuscular + " \n" + " Repeticoes: " + repeticoes + " \n" +" Series: " + series;
 	}
 
  

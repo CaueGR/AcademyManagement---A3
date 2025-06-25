@@ -13,18 +13,17 @@ public class Aluno extends Pessoa {
     private Treino treino = new Treino();
    
 
-    public Aluno(String name, LocalDate dataNascimento, Long telefone, Long cpf, Integer cep) {
+    public Aluno(String name, LocalDate dataNascimento, long telefone, long cpf, Integer cep) {
     	 super(name, dataNascimento, telefone, cpf, cep);
     }
 
-    public Aluno(String name, LocalDate dataNascimento, Long telefone, Long cpf, Integer cep,
+    public Aluno(String name, LocalDate dataNascimento, long telefone, long cpf, Integer cep,
             PlanoAcademia planoAcademia, PlanoAlimentar planoAlimentar, Treino treino) {
         super(name, dataNascimento, telefone, cpf, cep);
         this.planoAcademia = planoAcademia;
         this.planoAlimentar = planoAlimentar;
         this.treino = treino;
     }
-   
 
     public void exibeMenu() {
     	System.out.println("\n================= MENU PRINCIPAL =================");

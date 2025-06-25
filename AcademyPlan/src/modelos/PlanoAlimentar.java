@@ -14,7 +14,7 @@ public class PlanoAlimentar {
 		System.out.println("Refeicao adicionado com sucesso: " + refeicao);
 	}
 
-	public void removerRefeicao(Refeicao codigo) {
+	public void removerRefeicao(int codigo) {
 		listaRefeicao.remove(codigo);
 		System.out.println("Refeicao excluida com sucesso: " + codigo);
 	}

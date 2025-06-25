@@ -31,6 +31,10 @@ public class Treino {
 		this.listaExCompleto.add(completo);
 		System.out.println("Exercício adicionado com sucesso!");
 	}
+	public void removerExercicio(int numExercicio) {
+		listaExercicio.remove(numExercicio);
+		System.out.println("Exercício excluído com sucesso: " + numExercicio);
+	}
 
 	public void listarExercicio() {
 		if (this.listaExercicio.isEmpty() && this.listaExCompleto.isEmpty()) {

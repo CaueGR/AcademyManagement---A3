@@ -1,16 +1,13 @@
 package entities;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 import Interfaces.GerenciamentoPlano;
-import modelos.PlanoAcademia;
 
 public class Adm implements GerenciamentoPlano{
 
-	private String nome;
-    private Integer numeroAcesso; 
+    private String nome;
+    private Integer numeroAcesso;
     private String senhaAdm; 
+
     
     public boolean autenticacao(int numeroAcesso, String senhaAdm){
         if(numeroAcesso == this.numeroAcesso && senhaAdm.equals(this.senhaAdm)){
@@ -21,18 +18,17 @@ public class Adm implements GerenciamentoPlano{
         }
     }
     
+
     public Adm() {
     	
     }
-    
-	public Adm(String nome, Integer numeroAcesso, String senhaAdm) {
-		this.nome = nome;
-		this.numeroAcesso = numeroAcesso;
-		this.senhaAdm = senhaAdm;
-	}
-	
 
-	
+
+    public Adm(String name, Integer numeroAcesso, String senhaAdm) {
+        this.nome = name;
+        this.numeroAcesso = numeroAcesso;
+        this.senhaAdm = senhaAdm;
+    }	
 
 	public String getNome() {
 		return nome;
