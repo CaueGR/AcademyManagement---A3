@@ -18,7 +18,7 @@ public class Login {
     
     
     
-    public boolean autenticar(Aluno aluno) {
+    public boolean autenticarAluno(Aluno aluno) {
         Scanner sc = new Scanner(System.in);
         int MAX_TENTATIVAS = 3;
         int tentativas = 0;
@@ -56,7 +56,7 @@ public class Login {
             System.out.print("Digite nova senha: ");
             String novaSenha = sc.nextLine();
             
-            registro.cadastrarUsuario(novoEmail, novaSenha, aluno);
+            registro.cadastrarAluno(novoEmail, novaSenha, aluno);
         } else {
             System.out.println("Encerrando o programa.");
         }
@@ -64,7 +64,7 @@ public class Login {
         return false;
        
     }
-    public boolean autenticarAcesso() {
+    public boolean autenticarTreinador() {
         Scanner sc = new Scanner(System.in);
         int MAX_TENTATIVAS = 3;
         int tentativas = 0;
@@ -92,20 +92,6 @@ public class Login {
 
        
         System.out.println("Número máximo de tentativas atingido.");
-        System.out.print("Deseja se cadastrar? (s/n): ");
-        String opcao = sc.nextLine();
-
-        if (opcao.equalsIgnoreCase("s")) {
-            System.out.print("Digite novo email: ");
-            String novoEmail = sc.nextLine();
-
-            System.out.print("Digite nova senha: ");
-            String novaSenha = sc.nextLine();
-          sc.close();
-        } else {
-            System.out.println("Encerrando o programa.");
-        }
-
         return false;
        
     }

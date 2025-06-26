@@ -12,6 +12,9 @@ public class Aluno extends Pessoa {
     private PlanoAlimentar planoAlimentar;
     private Treino treino = new Treino();
    
+    public Aluno() {
+    	
+    }
 
     public Aluno(String name, LocalDate dataNascimento, long telefone, long cpf, Integer cep) {
     	 super(name, dataNascimento, telefone, cpf, cep);
@@ -28,13 +31,12 @@ public class Aluno extends Pessoa {
     public void exibeMenu() {
     	System.out.println("\n================= MENU PRINCIPAL =================");
     	System.out.println("|                                                |");
-    	System.out.println("|  1 - 📅 Agendar consulta com treinador         |");
-    	System.out.println("|  2 - 🏋️ Agendar treino                         |");
-    	System.out.println("|  3 - 📋 Visualizar plano de treino             |");
-    	System.out.println("|  4 - 💳 Verificar Planos da Academia           |");
-    	System.out.println("|  5 - 👤 Acessar dados pessoais                 |");
-    	System.out.println("|  6 - 🥗 Visualizar plano alimentar             |");
-    	System.out.println("|  7 - ❌ Sair                                   |");
+    	System.out.println("|  1 - 🏋️ Agendar treino                         |");
+    	System.out.println("|  2 - 📋 Visualizar plano de treino             |");
+    	System.out.println("|  3 - 💳 Verificar Planos da Academia           |");
+    	System.out.println("|  4 - 👤 Acessar dados pessoais                 |");
+    	System.out.println("|  5 - 🥗 Visualizar plano alimentar             |");
+    	System.out.println("|  6 - ❌ Sair                                   |");
     	System.out.println("|________________________________________________|");
     	System.out.print("Escolha uma opção: ");
     }

@@ -102,5 +102,6 @@ public class Adm implements GerenciamentoPlano{
         System.out.println("|  4 - ❌ Sair                                   |");
         System.out.println("|________________________________________________|");
         System.out.print("Escolha uma opção: ");
+        System.out.println();
     }
 }

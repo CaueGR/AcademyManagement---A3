@@ -1,7 +1,5 @@
 package Interfaces;
 
-import modelos.PlanoAcademia;
-
 public interface GerenciamentoPlano {
 
     void criarPlanoAcademia();

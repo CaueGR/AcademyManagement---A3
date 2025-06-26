@@ -12,13 +12,13 @@ public class Agendamento implements Agendavel {
     private Treinador treinador;
     private LocalDate data;
     private String hora;
-    private String local;
 
-    public Agendamento(Treinador treinador, LocalDate data, String hora, String local) {
+    
+    public Agendamento(Aluno aluno, Treinador treinador, LocalDate data, String hora) {
+    	this.aluno = aluno;
         this.treinador = treinador;
         this.data = data;
         this.hora = hora;
-        this.local = local;
     }
 
     
@@ -27,7 +27,7 @@ public class Agendamento implements Agendavel {
     public void agendar() {
         System.out.println("Agendamento criado para " + aluno.getName() + 
                            " com o treinador " + treinador.getName() + 
-                           " no dia " + data + " às " + hora + " no local " + local + ".");
+                           " no dia " + data + " às " + hora + " no local " + ".");
     }
 
     @Override
@@ -59,17 +59,10 @@ public class Agendamento implements Agendavel {
         this.hora = hora;
     }
 
-    public String getLocal() {
-        return local;
-    }
-
-    public void setLocal(String local) {
-        this.local = local;
-    }
 
     @Override
     public String toString() {
-        return "Agendamento [treinador=" + treinador + ", data=" + data + ", hora=" + hora + ", local=" + local + "]";
+        return "Agendamento [treinador=" + treinador + ", data=" + data + ", hora=" + hora + "]";
     }
     
 

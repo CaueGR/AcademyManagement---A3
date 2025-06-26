@@ -27,13 +27,13 @@ public class Treinador extends Pessoa implements GerenciamentoPlano {
 	public void exibeMenu() {
     	System.out.println("\n================= MENU PRINCIPAL =================");
     	System.out.println("|                                                |");
-    	System.out.println("|  1 - 📋 Construir treino                       |");
-    	System.out.println("|  2 - 💳 Construir plano alimentar              |");
-        System.out.println("|  3 - 💳 Visualizar plano treino                |");
-        System.out.println("|  4 - 💳 Visualizar plano alimentar             |");
-        System.out.println("|  5 - 💳 Excluir exercício do plano de treino   |");
-        System.out.println("|  6 - 💳 Excluir refeição do plano alimentar    |");
-    	System.out.println("|  7 - ❌ Sair                                   |");
+    	System.out.println("|  1 - 🏋️  Construir treino                      |");
+    	System.out.println("|  2 - 🍽️  Construir plano alimentar             |");
+    	System.out.println("|  3 - 👀 Visualizar plano de treino             |");
+    	System.out.println("|  4 - 👀 Visualizar plano alimentar             |");
+    	System.out.println("|  5 - ❌ Excluir exercício do plano de treino   |");
+    	System.out.println("|  6 - ❌ Excluir refeição do plano alimentar    |");
+    	System.out.println("|  7 - 🚪 Sair                                    |");
     	System.out.println("|________________________________________________|");
     	System.out.print("Escolha uma opção: ");
     }
